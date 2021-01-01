@@ -2,3 +2,5 @@
 checklists/
 Test/
 *.zip
+.vscode
+.VSCodeCounter
