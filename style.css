@@ -1,0 +1,53 @@
+body {
+	background-color: #b8d8d8;
+}
+
+nav {
+	background-color: #7a9e9f;
+}
+
+footer {
+	background-color: #7a9e9f;
+	position: fixed;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+}
+
+.dark-blue {
+	background-color: #547d85;
+}
+
+.light-grey {
+	background-color: #e2e2e2;
+}
+
+.login-box {
+	width: 500px;
+	background-color: #c9d99d;
+}
+
+.checkbox {
+	margin-top: 6px;
+	width: 25px;
+	height: 25px;
+}
+
+.no-padding {
+	padding: 0px;
+}
+
+#notify {
+	margin-bottom: 100px;
+}
+
+/* background: -webkit-linear-gradient(
+		to right,
+		#155799,
+		#159957
+	); 
+	background: linear-gradient(
+		to right,
+		#155799,
+		#159957
+	);  */

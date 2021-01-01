@@ -1,0 +1,43 @@
+"filename", "language", "PHP", "JavaScript", "HTML", "CSS", "SQL", "comment", "blank", "total"
+"c:\wamp64\www\projects\Checky\Back-End\Checklist\deleteChecklist.php", "PHP", 31, 0, 0, 0, 0, 5, 16, 52
+"c:\wamp64\www\projects\Checky\Back-End\Checklist\getChecklists.php", "PHP", 33, 0, 0, 0, 0, 3, 16, 52
+"c:\wamp64\www\projects\Checky\Back-End\Checklist\newChecklist.php", "PHP", 65, 0, 0, 0, 0, 11, 29, 105
+"c:\wamp64\www\projects\Checky\Back-End\Checklist\updateChecklist.php", "PHP", 53, 0, 0, 0, 0, 4, 24, 81
+"c:\wamp64\www\projects\Checky\Back-End\Task\deleteTask.php", "PHP", 27, 0, 0, 0, 0, 4, 14, 45
+"c:\wamp64\www\projects\Checky\Back-End\Task\getTasks.php", "PHP", 27, 0, 0, 0, 0, 4, 13, 44
+"c:\wamp64\www\projects\Checky\Back-End\Task\newTask.php", "PHP", 56, 0, 0, 0, 0, 10, 30, 96
+"c:\wamp64\www\projects\Checky\Back-End\Task\updateTask.php", "PHP", 69, 0, 0, 0, 0, 4, 27, 100
+"c:\wamp64\www\projects\Checky\Back-End\User system\loginHandler.php", "PHP", 44, 0, 0, 0, 0, 10, 22, 76
+"c:\wamp64\www\projects\Checky\Back-End\User system\registerHandler.php", "PHP", 69, 0, 0, 0, 0, 13, 33, 115
+"c:\wamp64\www\projects\Checky\Back-End\connect.php", "PHP", 10, 0, 0, 0, 0, 2, 3, 15
+"c:\wamp64\www\projects\Checky\Front-Facing\checklist.php", "PHP", 51, 0, 0, 0, 0, 0, 11, 62
+"c:\wamp64\www\projects\Checky\Front-Facing\checklistScripts.js", "JavaScript", 0, 160, 0, 0, 0, 1, 48, 209
+"c:\wamp64\www\projects\Checky\Front-Facing\checklists\CRBj.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\checklists\FlCJ.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\checklists\IUrn.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\checklists\LaGq.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\checklists\LujN.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\checklists\kfLf.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\checklists\oQqH.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\checklists\qRzg.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\checklists\rrHr.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\checklists\sNUZ.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\checklists\tfyY.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\createChecklist.php", "PHP", 75, 0, 0, 0, 0, 15, 35, 125
+"c:\wamp64\www\projects\Checky\Front-Facing\getNavBar.php", "PHP", 8, 0, 0, 0, 0, 0, 9, 17
+"c:\wamp64\www\projects\Checky\Front-Facing\index.php", "PHP", 44, 0, 0, 0, 0, 0, 9, 53
+"c:\wamp64\www\projects\Checky\Front-Facing\indexScripts.js", "JavaScript", 0, 0, 0, 0, 0, 0, 1, 1
+"c:\wamp64\www\projects\Checky\Front-Facing\loggedinNavBar.php", "PHP", 33, 0, 0, 0, 0, 0, 6, 39
+"c:\wamp64\www\projects\Checky\Front-Facing\loggedoutNavBar.html", "HTML", 0, 0, 35, 0, 0, 0, 3, 38
+"c:\wamp64\www\projects\Checky\Front-Facing\login.php", "PHP", 73, 0, 0, 0, 0, 0, 10, 83
+"c:\wamp64\www\projects\Checky\Front-Facing\loginScripts.js", "JavaScript", 0, 33, 0, 0, 0, 0, 10, 43
+"c:\wamp64\www\projects\Checky\Front-Facing\logout.php", "PHP", 5, 0, 0, 0, 0, 0, 3, 8
+"c:\wamp64\www\projects\Checky\Front-Facing\myChecklistsScripts.js", "JavaScript", 0, 103, 0, 0, 0, 1, 36, 140
+"c:\wamp64\www\projects\Checky\Front-Facing\mychecklists.php", "PHP", 53, 0, 0, 0, 0, 0, 11, 64
+"c:\wamp64\www\projects\Checky\Front-Facing\register.php", "PHP", 71, 0, 0, 0, 0, 0, 9, 80
+"c:\wamp64\www\projects\Checky\Front-Facing\registerScripts.js", "JavaScript", 0, 29, 0, 0, 0, 0, 8, 37
+"c:\wamp64\www\projects\Checky\Front-Facing\style.css", "CSS", 0, 0, 0, 41, 0, 10, 12, 63
+"c:\wamp64\www\projects\Checky\Test\folder1\test.php", "PHP", 3, 0, 0, 0, 0, 0, 2, 5
+"c:\wamp64\www\projects\Checky\Test\folder2\abcd.php", "PHP", 1, 0, 0, 0, 0, 0, 0, 1
+"c:\wamp64\www\projects\Checky\sql table making.sql", "SQL", 0, 0, 0, 0, 27, 0, 7, 34
+"Total", "-", 912, 325, 35, 41, 27, 97, 457, 1894
