@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($userErrorMsg === "" and $passErrorMsg === ""){
 
         //prepare, bind and execute the statement
-        $stmt = $conn->prepare("INSERT INTO user VALUES (?, ?)");
+        $stmt = $conn->prepare("INSERT INTO users VALUES (?, ?)");
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
 
@@ -62,7 +62,7 @@ function IsValidUsername($username){
     }
 
     //prepare, bind and execute the statement
-    $stmt = $conn->prepare("SELECT username FROM user WHERE username = ?");
+    $stmt = $conn->prepare("SELECT username FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
 

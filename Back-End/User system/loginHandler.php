@@ -48,7 +48,7 @@ function IsValidCredentials($username, $password){
 	$passErrorMsg = "";
 
     //prepare, bind and execute the statement
-    $stmt = $conn->prepare("SELECT userPassword FROM user WHERE username = ?");
+    $stmt = $conn->prepare("SELECT userPassword FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
 

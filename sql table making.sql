@@ -1,4 +1,4 @@
-CREATE TABLE user (
+CREATE TABLE users (
     username VARCHAR(16) NOT NULL COLLATE utf8mb4_0900_as_cs,
     userPassword VARCHAR(16) NOT NULL,
     PRIMARY KEY (username)
@@ -12,7 +12,7 @@ CREATE TABLE checklist (
    checklistTitle VARCHAR(16),
    checklistPassword VARCHAR(16),
    PRIMARY KEY (checklistID),
-   FOREIGN KEY (username) REFERENCES user(username)
+   FOREIGN KEY (username) REFERENCES users(username)
 );
 
 CREATE TABLE task (
@@ -28,7 +28,9 @@ CREATE TABLE task (
 );
 
 
-utf8mb4_0900_as_cs
+utf8mb4_0900_as_cs for mysql on wamp
+
+utf8mb4_nopad_bin for on hostinger
 
 ALTER TABLE task ADD checkbox BOOLEAN NOT NULL;
 
