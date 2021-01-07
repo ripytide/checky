@@ -2,9 +2,6 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    //requires connection to database
-    require("../connect.php");
-
     session_start();
 
     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
@@ -15,18 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if ($loggedin){
-        //prepare, bind and execute the statement depending on which column needed.
-        $stmt = $conn->prepare("SELECT * FROM checklist WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        
-        $result = $stmt->get_result();
-        
-        //close connection
-        $stmt->close();
-        $conn->close();
 
-        $output["results"] = array();
+        $result = Query("SELECT * FROM checklist WHERE username = ?", "s", $username);
 
         if ($result->num_rows === 0){
             $output["status"] = "caution";

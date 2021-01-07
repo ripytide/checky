@@ -11,6 +11,7 @@ CREATE TABLE checklist (
    username VARCHAR(16) COLLATE utf8mb4_0900_as_cs,
    checklistTitle VARCHAR(16),
    checklistPassword VARCHAR(16),
+   access ENUM("Public editable", "Public not editable", "Private") NOT NULL,
    PRIMARY KEY (checklistID),
    FOREIGN KEY (username) REFERENCES users(username)
 );
@@ -31,7 +32,3 @@ CREATE TABLE task (
 utf8mb4_0900_as_cs for mysql on wamp
 
 utf8mb4_nopad_bin for on hostinger
-
-ALTER TABLE task ADD checkbox BOOLEAN NOT NULL;
-
-ALTER TABLE checklist ADD access ENUM("Public editable", "Public not editable", "Private") NOT NULL;

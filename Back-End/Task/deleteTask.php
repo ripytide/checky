@@ -2,9 +2,6 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    //requires connection to database
-    require("../connect.php");
-
     //retrieve data from post
     $taskID = $_POST["taskID"];
     $checklistID = $_POST["checklistID"];
@@ -18,8 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else{
         $loggedin = false;
     }
-    
-    require("../functions.php");
 
     $access = GetAccess($checklistID);
     $actualPassword = GetPassword($checklistID);
@@ -27,16 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($access === "Public editable" or (($givenPassword === $actualPassword) and ($actualPassword !== null)) or ($loggedin and $username === $checklistUsername)){
 
-        //prepare, bind and execute the statement depending on which column needed.
-        $stmt = $conn->prepare("DELETE FROM task WHERE taskID = ?");
-        $stmt->bind_param("s", $taskID);
-        $stmt->execute();
-
-        //close connection
-        $stmt->close();
-        $conn->close();
-
-        
+        Query("DELETE FROM task WHERE taskID = ?", "s", $taskID);
 
         $output["status"] = "success";
         $output["taskID"] = $taskID;

@@ -2,16 +2,10 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    //requires connection to database
-    require("../../connect.php");
-
     //retrieve pass from post request
     $password = $_POST["password"];
     $checklistID = $_POST["checklistID"];
     
-    
-
-    require("../../functions.php");
     $actualPassword = GetPassword($checklistID);
 
     if ($actualPassword)
@@ -22,15 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if ($feedback === ""){
-
-        //prepare, bind and execute the statement
-        $stmt = $conn->prepare("UPDATE checklist SET checklistPassword = ? WHERE checklistID = ?");
-        $stmt->bind_param("ss", $password, $_POST["checklistID"]);
-        $stmt->execute();
-
-        //close connection
-        $stmt->close();
-        $conn->close();
+        Query("UPDATE checklist SET checklistPassword = ? WHERE checklistID = ?", "ss", $password, $_POST["checklistID"]);
 
         $output["status"] = "success";
         $output["passErrorMsg"] = "";
@@ -44,8 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 function IsValidPassword($password){
-    require("../../connect.php");
-
     $passErrorMsg = "";
 
     //becomes true if there is no number in the password

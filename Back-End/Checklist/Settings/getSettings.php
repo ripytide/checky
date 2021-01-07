@@ -1,9 +1,7 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
     
-
     $checklistID = $_POST["checklistID"];
 
     session_start();
@@ -15,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $loggedin = false;
     }
 
-    require("../../functions.php");
     $actualPassword = GetPassword($checklistID);
     $checklistUsername = GetUsername($checklistID);
     $access = GetAccess($checklistID);

@@ -3,49 +3,34 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    //requires connection to database
-    require("../connect.php");
-
     //define empty variables
     $username = $password = "";
 
     //retrieve user/pass from post request
 	$username = $_POST["username"];
     $password = $_POST["password"];
-    
-    
 
     $userErrorMsg = IsValidUsername($username);
     $passErrorMsg = IsValidPassword($password);
 
     if ($userErrorMsg === "" and $passErrorMsg === ""){
-
-        //prepare, bind and execute the statement
-        $stmt = $conn->prepare("INSERT INTO users VALUES (?, ?)");
-        $stmt->bind_param("ss", $username, $password);
-        $stmt->execute();
-
-        //close connection
-        $stmt->close();
-        $conn->close();
+        Query("INSERT INTO users VALUES (?, ?)", "ss", $username, $password);
 
         $output["status"] = "success";
         $output["userErrorMsg"] = "";
         $output["passErrorMsg"] = "";
 
-
     } else {
         $output["status"] = "fail";
         $output["userErrorMsg"] = $userErrorMsg;
         $output["passErrorMsg"] = $passErrorMsg;
+
     }
 
     echo(json_encode($output));
 }
 
 function IsValidUsername($username){
-    require("../connect.php");
-
     $userErrorMsg = "";
 
     //becomes true if the username contains anthing non alphanumeric
@@ -61,17 +46,8 @@ function IsValidUsername($username){
         $userErrorMsg .= " Your username is too short";
     }
 
-    //prepare, bind and execute the statement
-    $stmt = $conn->prepare("SELECT username FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-
     //get the Result
-    $result = $stmt->get_result();
-
-    //close connection
-    $stmt->close();
-    $conn->close();
+    $result = Query("SELECT username FROM users WHERE username = ?", "s", $username);
 
     //if not unique
     if ($result->num_rows !== 0){
@@ -82,8 +58,6 @@ function IsValidUsername($username){
 }
 
 function IsValidPassword($password){
-    require("../connect.php");
-
     $passErrorMsg = "";
 
     //becomes true if there is no number in the password

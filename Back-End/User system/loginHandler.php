@@ -2,9 +2,6 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    //requires connection to database
-    require("../connect.php");
-
     //define empty variables
     $username = $password = "";
 
@@ -12,8 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	$username = $_POST["username"];
     $password = $_POST["password"];
     
-    
-
 	$feedback = IsValidCredentials($username, $password);
 
     if ($feedback[0] === "" and $feedback[1] === ""){
@@ -42,22 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 function IsValidCredentials($username, $password){
-    require("../connect.php");
 
 	$userErrorMsg = "";
 	$passErrorMsg = "";
 
-    //prepare, bind and execute the statement
-    $stmt = $conn->prepare("SELECT userPassword FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-
     //get the Result
-    $result = $stmt->get_result();
-
-    //close connection
-    $stmt->close();
-    $conn->close();
+    $result = Query("SELECT userPassword FROM users WHERE username = ?", "s", $username);
 
     //if username not found
     if ($result->num_rows === 0){

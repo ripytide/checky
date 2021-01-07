@@ -2,9 +2,6 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    //requires connection to database
-    require("../connect.php");
-
     //retrieve data from post
 	$checklistID = $_POST["checklistID"];
     $column = $_POST["column"];
@@ -18,34 +15,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else{
             $valid = false;
 
-            
-
             $output["status"] = "fail";
             $output["checklistID"] = $checklistID;
             $output["column"] = $column;
             $output["errorMsg"] = $errorMsg;
-
         }
     }else{
         $valid = false;
-
-        
 
         $output["status"] = "fail";
         $output["checklistID"] = $checklistID;
     }
 
     if ($valid){
-        //prepare, bind and execute the statement depending on which column needed.
-        $stmt = $conn->prepare("UPDATE checklist SET $column = ? WHERE checklistID = ?");
-        $stmt->bind_param("ss", $newValue, $checklistID);
-        $stmt->execute();
-
-        //close connection
-        $stmt->close();
-        $conn->close();
-
-        
+        Query("UPDATE checklist SET $column = ? WHERE checklistID = ?", "ss", $newValue, $checklistID);
 
         $output["status"] = "success";
         $output["checklistID"] = $checklistID;

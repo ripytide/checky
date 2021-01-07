@@ -2,9 +2,6 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
-    //requires connection to database
-    require("../connect.php");
-
     //retrieve data from post
 	$taskID = $_POST["taskID"];
     $column = $_POST["column"];
@@ -20,8 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     } else{
         $loggedin = false;
     }
-
-    require("../functions.php");
 
     $access = GetAccess($checklistID);
     $actualPassword = GetPassword($checklistID);
@@ -65,16 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
     if ($access === "Public editable" or (($givenPassword === $actualPassword) and ($actualPassword !== null)) or ($loggedin and $username === $checklistUsername)){
         if ($valid){
-            //prepare, bind and execute the statement depending on which column needed.
-            $stmt = $conn->prepare("UPDATE task SET $column = ? WHERE taskID = ?");
-            $stmt->bind_param("ss", $newValue, $taskID);
-            $stmt->execute();
-
-            //close connection
-            $stmt->close();
-            $conn->close();
-
-            
+            Query("UPDATE task SET $column = ? WHERE taskID = ?", "ss", $newValue, $taskID);
 
             $output["status"] = "success";
             $output["taskID"] = $taskID;
@@ -103,7 +89,6 @@ function IsValidDescription($desc){
         return("This description is too long");
     }
 }
-
 ?>
 
 
