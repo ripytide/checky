@@ -1,6 +1,7 @@
 <?php 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    require($_SERVER['DOCUMENT_ROOT'] . "/Back-End/functions.php");
 
     //get data from post
 	$checklistID = $_POST["checklistID"];

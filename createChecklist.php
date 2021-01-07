@@ -1,4 +1,5 @@
 <?php
+require($_SERVER['DOCUMENT_ROOT'] . "/Back-End/functions.php");
 
 session_start();
 
@@ -33,7 +34,7 @@ if ($idArray["status"] === "unique" and $loggedin){
     fwrite($newFile, "<?php require(\"../checklist.php\"); ?>");
     fclose($newFile);
 
-    Query('INSERT INTO checklist VALUES (?, ?, NULL, NULL, "Public editable")', "s", $idArray["ID"]);
+    Query('INSERT INTO checklist VALUES (?, NULL, NULL, NULL, "Public editable")', "s", $idArray["ID"]);
     
     $output["status"] = "success";
     $output["checklistID"] = $idArray["ID"];
