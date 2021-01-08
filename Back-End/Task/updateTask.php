@@ -67,9 +67,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
             $output["taskID"] = $taskID;
             $output["column"] = $column;
         }
+    } else if($checklistUsername === null and (($givenPassword === $actualPassword) and ($actualPassword !== null))){
+        $output["status"] = "fail";
+        $output["userChecklist"] = false;
+        $output["errorMsg"] = "The current password is wrong!";
     } else{
         $output["status"] = "fail";
-        $output["errorMsg"] = "You do not have permission to update a task to this checklist or the current password is wrong!";
+        $output["userChecklist"] = true;
+        $output["errorMsg"] = "You do not have permission to update a task to this checklist!";
     }
     
     echo(json_encode($output));

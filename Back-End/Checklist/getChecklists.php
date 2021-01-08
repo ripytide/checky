@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($result->num_rows === 0){
             $output["status"] = "caution";
-            $output["error"] = "no tasks for that checklist";
+            $output["errorMsg"] = "no tasks for that checklist";
 
         } else{
             $output["status"] = "success";

@@ -28,13 +28,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $output["status"] = "success";
         $output["taskID"] = $taskID;
 
-        echo(json_encode($output));
-    } else{
-        
+    } else if($checklistUsername === null){
         $output["status"] = "fail";
-        $output["errorMsg"] = "You do not have permission to delete from this checklist or the current password is wrong!";
+        $output["userChecklist"] = false;
+        $output["errorMsg"] = "The current password is wrong!";
 
-        echo(json_encode($output));
+    } else{
+        $output["status"] = "fail";
+        $output["userChecklist"] = true;
+        $output["errorMsg"] = "You do not have permission to delete a task to this checklist!";
+        
     }
+    echo(json_encode($output));
 }
 ?>

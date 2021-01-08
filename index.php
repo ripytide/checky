@@ -31,9 +31,6 @@
 			<a class="dark-blue btn btn-lg mt-5" href="createChecklist">
 				Create a checklist
 			</a>
-			<a class="dark-blue btn btn-lg mt-5" href="mychecklists">
-				my checklists
-			</a>
 		</div>
 
 		<footer>

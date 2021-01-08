@@ -1,36 +1,102 @@
 $(document).ready(function () {
-	GetTasks();
+	GrabChecklist();
 });
 
-function GetTasks() {
+function GrabChecklist() {
 	$.post(
-		"../../Back-End/Task/getTasks.php",
-		{ checklistID: GetChecklistID(), password: GetPassword() },
-		GetTasksReturned
+		"../../Back-End/Task/grabChecklist.php",
+		{ checklistID: GetChecklistID(), password: "" },
+		GrabChecklistReturned
 	);
 }
 
-function GetTasksReturned(data) {
-	json = JSON.parse(data);
+function GrabChecklistReturned(data) {
+	var json = JSON.parse(data);
 
-	if (json["status"] == "success" || json["status"] == "caution") {
-		DisplayInfo(json["status"]);
-
-		var table = document
-			.getElementById("taskList")
-			.getElementsByTagName("tbody")[0];
-
-		var results = json["results"];
-
-		for (var i = 0; i < results.length; i++) {
-			var row = table.insertRow();
-			row.id = results[i]["taskID"];
-
-			AddTaskCells(row);
-			PopulateTaskCells(row, results[i]);
-		}
+	if (json["tasksAccess"]) {
+		$("#taskListDiv").show();
+		ShowChecklist(json["tasks"]);
+	} else if (!json["userChecklist"]) {
+		$("#authenticationBox").show();
 	} else {
 		DisplayInfo(json["errorMsg"]);
+	}
+
+	if (json["settingsAccess"]) {
+		$("#management").show();
+
+		if (json["userChecklist"]) {
+			$("#accessRow").show();
+			$("#access").val(json["access"]);
+			currentAccess = json["access"];
+		} else {
+			if (json["passwordSet"]) {
+				$("#accessRow").show();
+				$("#access").val(json["access"]);
+				currentAccess = json["access"];
+
+				$("#currentPasswordRow").show();
+				$("#newPasswordRow").show();
+				$("#removePasswordRow").show();
+			} else {
+				$("#setPasswordRow").show();
+			}
+		}
+	}
+}
+
+function ReGrabChecklist() {
+	$.post(
+		"../../Back-End/Task/grabChecklist.php",
+		{ checklistID: GetChecklistID(), password: $("#authPassword").val() },
+		ReGrabChecklistReturned
+	);
+}
+
+function ReGrabChecklistReturned(data) {
+	var json = JSON.parse(data);
+
+	if (json["tasksAccess"]) {
+		//if task is given access so is settings access given
+		//tasks stuff
+		$("#authenticationBox").hide();
+
+		$("#taskListDiv").show();
+		ShowChecklist(json["tasks"]);
+
+		//setting stuff
+		$("#management").show();
+
+		if (json["passwordSet"]) {
+			$("#accessRow").show();
+			$("#access").val(json["access"]);
+			currentAccess = json["access"];
+
+			$("#currentPasswordRow").show();
+			$("#newPasswordRow").show();
+			$("#removePasswordRow").show();
+		} else {
+			$("#setPasswordRow").show();
+		}
+	} else {
+		$("#authPassword").addClass("is-invalid");
+		$("#authPassErrorMsg").text(json["errorMsg"]);
+	}
+}
+
+function ShowChecklist(tasks) {
+	var table = document
+		.getElementById("taskList")
+		.getElementsByTagName("tbody")[0];
+
+	if (tasks) {
+		for (var i = 0; i < tasks.length; i++) {
+			var row = table.insertRow();
+			row.id = tasks[i]["taskID"];
+
+			AddTaskCells(row);
+			PopulateTaskCells(row, tasks[i]);
+		}
 	}
 }
 
@@ -83,7 +149,7 @@ function NewTask() {
 }
 
 function AddTaskReturned(data) {
-	json = JSON.parse(data);
+	var json = JSON.parse(data);
 
 	if (json["status"] == "success") {
 		DisplayInfo("success");
@@ -97,8 +163,14 @@ function AddTaskReturned(data) {
 		row.id = json["taskID"];
 
 		AddTaskCells(row);
+
+		CurrentPasswordError("");
 	} else {
-		DisplayInfo(json["errorMsg"]);
+		if (json["userChecklist"]) {
+			DisplayInfo(json["errorMsg"]);
+		} else {
+			CurrentPasswordError(json["errorMsg"]);
+		}
 	}
 }
 
@@ -120,8 +192,14 @@ function DeleteReturned(data) {
 	if (json["status"] === "success") {
 		var row = document.getElementById(json["taskID"]);
 		row.remove();
+
+		CurrentPasswordError("");
 	} else {
-		DisplayInfo(json["errorMsg"]);
+		if (json["userChecklist"]) {
+			DisplayInfo(json["errorMsg"]);
+		} else {
+			CurrentPasswordError(json["errorMsg"]);
+		}
 	}
 }
 
@@ -170,34 +248,39 @@ function RequestUpdate(node, column, newValue) {
 
 function UpdateChecklistReturned(data) {
 	var json = JSON.parse(data);
+	if (json["status"] !== "success") {
+		if (json["column"] == "taskTitle") {
+			var taskID = json["taskID"];
+			var row = document.getElementById(taskID);
+			var input = row.cells[1].childNodes[0];
+			var errorMsg = row.cells[1].childNodes[1];
 
-	DisplayInfo(json["status"]);
-	if (json["column"] == "taskTitle") {
-		var taskID = json["taskID"];
-		var row = document.getElementById(taskID);
-		var input = row.cells[1].childNodes[0];
-		var errorMsg = row.cells[1].childNodes[1];
+			if (json["status"] != "success") {
+				input.classList.add("is-invalid");
+				errorMsg.innerText = json["errorMsg"];
+			} else {
+				input.classList.remove("is-invalid");
+				errorMsg.innerText = "";
+			}
+		} else if (json["column"] == "description") {
+			var taskID = json["taskID"];
+			var row = document.getElementById(taskID);
+			var input = row.cells[2].childNodes[0];
+			var errorMsg = row.cells[2].childNodes[1];
 
-		if (json["status"] != "success") {
-			input.classList.add("is-invalid");
-			errorMsg.innerText = json["errorMsg"];
+			if (json["status"] != "success") {
+				input.classList.add("is-invalid");
+				errorMsg.innerText = json["errorMsg"];
+			} else {
+				input.classList.remove("is-invalid");
+				errorMsg.innerText = "";
+			}
 		} else {
-			input.classList.remove("is-invalid");
-			errorMsg.innerText = "";
-		}
-	}
-	if (json["column"] == "description") {
-		var taskID = json["taskID"];
-		var row = document.getElementById(taskID);
-		var input = row.cells[2].childNodes[0];
-		var errorMsg = row.cells[2].childNodes[1];
-
-		if (json["status"] != "success") {
-			input.classList.add("is-invalid");
-			errorMsg.innerText = json["errorMsg"];
-		} else {
-			input.classList.remove("is-invalid");
-			errorMsg.innerText = "";
+			if (json["userChecklist"]) {
+				DisplayInfo(json["errorMsg"]);
+			} else {
+				CurrentPasswordError(json["errorMsg"]);
+			}
 		}
 	}
 }

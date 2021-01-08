@@ -27,6 +27,12 @@ footer {
 	background-color: #c9d99d;
 }
 
+.auth-box {
+	margin-top: 120px;
+	width: 500px;
+	background-color: #4b89da;
+}
+
 .checkbox {
 	margin-top: 6px;
 	width: 25px;
@@ -35,6 +41,10 @@ footer {
 
 .no-padding {
 	padding: 0px;
+}
+
+.hide {
+	display: none;
 }
 
 #notify {
