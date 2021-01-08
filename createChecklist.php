@@ -27,6 +27,7 @@ if ($idArray["status"] === "unique" and $loggedin){
     $output["checklistID"] = $idArray["ID"];
     
 } else if ($idArray["status"] === "unique" and !$loggedin){
+    
     //open a new file which also creates it
     $newFile = fopen("checklists/" . $idArray["ID"] . ".php", "w");
 

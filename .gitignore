@@ -2,7 +2,7 @@
 checklists/
 Test/
 *.zip
-.vscode/
+.vscode\launch.json
 .VSCodeCounter/
 node_modules/
 package-lock.json
