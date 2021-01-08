@@ -1,8 +1,8 @@
 .DS_Store
+*.zip
 checklists/
 Test/
-*.zip
-.vscode\launch.json
+.vscode/
 .VSCodeCounter/
 node_modules/
 package-lock.json
