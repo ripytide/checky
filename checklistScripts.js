@@ -248,39 +248,37 @@ function RequestUpdate(node, column, newValue) {
 
 function UpdateChecklistReturned(data) {
 	var json = JSON.parse(data);
-	if (json["status"] !== "success") {
-		if (json["column"] == "taskTitle") {
-			var taskID = json["taskID"];
-			var row = document.getElementById(taskID);
-			var input = row.cells[1].childNodes[0];
-			var errorMsg = row.cells[1].childNodes[1];
+	if (json["column"] === "taskTitle") {
+		var taskID = json["taskID"];
+		var row = document.getElementById(taskID);
+		var input = row.cells[1].childNodes[0];
+		var errorMsg = row.cells[1].childNodes[1];
 
-			if (json["status"] != "success") {
-				input.classList.add("is-invalid");
-				errorMsg.innerText = json["errorMsg"];
-			} else {
-				input.classList.remove("is-invalid");
-				errorMsg.innerText = "";
-			}
-		} else if (json["column"] == "description") {
-			var taskID = json["taskID"];
-			var row = document.getElementById(taskID);
-			var input = row.cells[2].childNodes[0];
-			var errorMsg = row.cells[2].childNodes[1];
-
-			if (json["status"] != "success") {
-				input.classList.add("is-invalid");
-				errorMsg.innerText = json["errorMsg"];
-			} else {
-				input.classList.remove("is-invalid");
-				errorMsg.innerText = "";
-			}
+		if (json["status"] !== "success") {
+			input.classList.add("is-invalid");
+			errorMsg.innerText = json["errorMsg"];
 		} else {
-			if (json["userChecklist"]) {
-				DisplayInfo(json["errorMsg"]);
-			} else {
-				CurrentPasswordError(json["errorMsg"]);
-			}
+			input.classList.remove("is-invalid");
+			errorMsg.innerText = "";
+		}
+	} else if (json["column"] === "description") {
+		var taskID = json["taskID"];
+		var row = document.getElementById(taskID);
+		var input = row.cells[2].childNodes[0];
+		var errorMsg = row.cells[2].childNodes[1];
+
+		if (json["status"] !== "success") {
+			input.classList.add("is-invalid");
+			errorMsg.innerText = json["errorMsg"];
+		} else {
+			input.classList.remove("is-invalid");
+			errorMsg.innerText = "";
+		}
+	} else {
+		if (json["userChecklist"]) {
+			DisplayInfo(json["errorMsg"]);
+		} else {
+			CurrentPasswordError(json["errorMsg"]);
 		}
 	}
 }
