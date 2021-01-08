@@ -2,8 +2,8 @@
 checklists/
 Test/
 *.zip
-.vscode
-.VSCodeCounter
-node_modules
+.vscode/
+.VSCodeCounter/
+node_modules/
 package-lock.json
 .eslintrc.js
