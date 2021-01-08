@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($idArray["status"] === "unique" and $loggedin){
 
         //open a new file which also creates it
-        $newFile = fopen("../../Front-Facing/checklists/" . $idArray["ID"] . ".php", "w");
+        $newFile = fopen("../../checklists/" . $idArray["ID"] . ".php", "w");
 
         //make the new file require the generic checklist html
         fwrite($newFile, "<?php require(\"../checklist.php\"); ?>");
