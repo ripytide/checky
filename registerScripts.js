@@ -1,8 +1,8 @@
 function Register() {
-	var username = document.getElementById("username").value;
-	var password = document.getElementById("password").value;
+	let username = document.getElementById("username").value;
+	let password = document.getElementById("password").value;
 
-	var credentials = { username, password };
+	let credentials = { username, password };
 
 	$.post(
 		"../Back-End/User system/registerHandler.php",
@@ -12,7 +12,7 @@ function Register() {
 }
 
 function RegisterReturned(data) {
-	var output = JSON.parse(data);
+	let output = JSON.parse(data);
 
 	userErrorMsg = document.getElementById("userErrorMsg");
 	passErrorMsg = document.getElementById("passErrorMsg");

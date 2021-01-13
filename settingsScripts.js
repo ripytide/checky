@@ -1,9 +1,9 @@
-var currentAccess;
+let currentAccess;
 
 function RequestAccessUpdate() {
-	var newValue = $("#access").val();
+	let newValue = $("#access").val();
 
-	var dataOutwards = {
+	let dataOutwards = {
 		column: "access",
 		newValue,
 		checklistID: GetChecklistID(),
@@ -33,9 +33,9 @@ function UpdateAccessReturned(data) {
 }
 
 function RequestSetPassword() {
-	var password = document.getElementById("setPassword").value;
+	let password = document.getElementById("setPassword").value;
 
-	var dataOutwards = { password, checklistID: GetChecklistID() };
+	let dataOutwards = { password, checklistID: GetChecklistID() };
 
 	$.post(
 		"../../Back-End/Checklist/Settings/setPassword.php",
@@ -45,7 +45,7 @@ function RequestSetPassword() {
 }
 
 function SetPasswordReturned(data) {
-	var json = JSON.parse(data);
+	let json = JSON.parse(data);
 
 	DisplayInfo(json["status"]);
 
@@ -74,9 +74,9 @@ function SetPasswordReturned(data) {
 }
 
 function RequestChangePassword() {
-	var newPassword = document.getElementById("newPassword").value;
+	let newPassword = document.getElementById("newPassword").value;
 
-	var dataOutwards = {
+	let dataOutwards = {
 		currentPassword: GetPassword(),
 		newPassword,
 		checklistID: GetChecklistID(),
@@ -90,7 +90,7 @@ function RequestChangePassword() {
 }
 
 function ChangePasswordReturned(data) {
-	var json = JSON.parse(data);
+	let json = JSON.parse(data);
 	DisplayInfo(json["status"]);
 
 	if (json["status"] === "success") {
@@ -101,7 +101,7 @@ function ChangePasswordReturned(data) {
 }
 
 function RequestRemovePassword() {
-	var dataOutwards = {
+	let dataOutwards = {
 		password: GetPassword(),
 		checklistID: GetChecklistID(),
 	};
@@ -114,7 +114,7 @@ function RequestRemovePassword() {
 }
 
 function RemovePasswordReturned(data) {
-	var json = JSON.parse(data);
+	let json = JSON.parse(data);
 
 	if (json["status"] == "success") {
 		$("#accessRow").hide();
@@ -131,8 +131,8 @@ function RemovePasswordReturned(data) {
 }
 
 function CurrentPasswordError(errorMsg) {
-	var currentPassErrorMsg = document.getElementById("currentPassErrorMsg");
-	var currentPass = document.getElementById("currentPassword");
+	let currentPassErrorMsg = document.getElementById("currentPassErrorMsg");
+	let currentPass = document.getElementById("currentPassword");
 
 	if (currentPass) {
 		currentPassErrorMsg.innerHTML = errorMsg;
@@ -146,7 +146,7 @@ function CurrentPasswordError(errorMsg) {
 }
 
 function GetPassword() {
-	var currPassInput = document.getElementById("currentPassword");
+	let currPassInput = document.getElementById("currentPassword");
 
 	if (currPassInput) {
 		return currPassInput.value;
@@ -156,7 +156,7 @@ function GetPassword() {
 }
 
 function GetChecklistID() {
-	var fileName = location.pathname.split("/").slice(-1)[0];
+	let fileName = location.pathname.split("/").slice(-1)[0];
 
 	if (fileName.charAt(fileName.length - 4) == ".") {
 		fileName = fileName.slice(0, -4);

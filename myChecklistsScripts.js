@@ -12,14 +12,14 @@ function ShowChecklists(data) {
 	if (json["status"] == "success" || json["status"] == "caution") {
 		DisplayInfo(json["status"]);
 
-		var table = document
+		let table = document
 			.getElementById("checklistList")
 			.getElementsByTagName("tbody")[0];
 
-		var results = json["results"];
+		let results = json["results"];
 
-		for (var i = 0; i < results.length; i++) {
-			var row = table.insertRow(-1);
+		for (let i = 0; i < results.length; i++) {
+			let row = table.insertRow(-1);
 			row.id = results[i]["checklistID"];
 
 			AddChecklistCells(row, results[i]["checklistID"]);
@@ -40,11 +40,11 @@ function AddChecklistRow(data) {
 	if (json["status"] == "success") {
 		DisplayInfo("success");
 
-		var table = document
+		let table = document
 			.getElementById("checklistList")
 			.getElementsByTagName("tbody")[0];
 
-		var row = table.insertRow(-1);
+		let row = table.insertRow(-1);
 
 		row.id = json["checklistID"];
 
@@ -56,9 +56,9 @@ function AddChecklistRow(data) {
 
 function AddChecklistCells(row, checklistID) {
 	//TODO - add link to view button
-	var cell1 = row.insertCell(0);
-	var cell2 = row.insertCell(1);
-	var cell3 = row.insertCell(2);
+	let cell1 = row.insertCell(0);
+	let cell2 = row.insertCell(1);
+	let cell3 = row.insertCell(2);
 
 	cell1.innerHTML =
 		'<input type="text"class="form-control light-grey"placeholder="title here"/><p class="invalid-feedback"></p>';
@@ -73,9 +73,9 @@ function AddChecklistCells(row, checklistID) {
 }
 
 function RequestDelete() {
-	var checklistID = this.parentElement.parentElement.id;
+	let checklistID = this.parentElement.parentElement.id;
 
-	var dataOutwards = { checklistID };
+	let dataOutwards = { checklistID };
 
 	$.post(
 		"../Back-End/Checklist/deleteChecklist.php",
@@ -85,24 +85,24 @@ function RequestDelete() {
 }
 
 function DeleteReturned(data) {
-	var json = JSON.parse(data);
+	let json = JSON.parse(data);
 
 	DisplayInfo(json["status"]);
 
-	var row = document.getElementById(json["checklistID"]);
+	let row = document.getElementById(json["checklistID"]);
 
 	row.remove();
 }
 
 function ChangeTitle() {
-	var newValue = this.value;
+	let newValue = this.value;
 	RequestUpdate(this, "checklistTitle", newValue);
 }
 
 function RequestUpdate(node, column, newValue) {
-	var checklistID = node.parentElement.parentElement.id;
+	let checklistID = node.parentElement.parentElement.id;
 
-	var dataOutwards = { checklistID, column, newValue };
+	let dataOutwards = { checklistID, column, newValue };
 
 	$.post(
 		"../Back-End/Checklist/updateChecklist.php",
@@ -112,15 +112,15 @@ function RequestUpdate(node, column, newValue) {
 }
 
 function UpdateReturned(data) {
-	var json = JSON.parse(data);
+	let json = JSON.parse(data);
 
 	DisplayInfo(json["status"]);
 
 	if (json["column"] == "checklistTitle") {
-		var checklistID = json["checklistID"];
-		var row = document.getElementById(checklistID);
-		var input = row.cells[0].childNodes[0];
-		var errorMsg = row.cells[0].childNodes[1];
+		let checklistID = json["checklistID"];
+		let row = document.getElementById(checklistID);
+		let input = row.cells[0].childNodes[0];
+		let errorMsg = row.cells[0].childNodes[1];
 
 		if (json["status"] != "success") {
 			input.classList.add("is-invalid");
@@ -133,7 +133,7 @@ function UpdateReturned(data) {
 }
 
 function DisplayInfo(data) {
-	var notify = document.getElementById("notify");
+	let notify = document.getElementById("notify");
 
 	notify.innerHTML = data;
 }

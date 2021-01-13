@@ -11,7 +11,7 @@ function GrabChecklist() {
 }
 
 function GrabChecklistReturned(data) {
-	var json = JSON.parse(data);
+	let json = JSON.parse(data);
 
 	if (json["tasksAccess"]) {
 		$("#taskListDiv").show();
@@ -54,7 +54,7 @@ function ReGrabChecklist() {
 }
 
 function ReGrabChecklistReturned(data) {
-	var json = JSON.parse(data);
+	let json = JSON.parse(data);
 
 	if (json["tasksAccess"]) {
 		//if task is given access so is settings access given
@@ -85,13 +85,13 @@ function ReGrabChecklistReturned(data) {
 }
 
 function ShowChecklist(tasks) {
-	var table = document
+	let table = document
 		.getElementById("taskList")
 		.getElementsByTagName("tbody")[0];
 
 	if (tasks) {
-		for (var i = 0; i < tasks.length; i++) {
-			var row = table.insertRow();
+		for (let i = 0; i < tasks.length; i++) {
+			let row = table.insertRow();
 			row.id = tasks[i]["taskID"];
 
 			AddTaskCells(row);
@@ -109,12 +109,12 @@ function PopulateTaskCells(row, data) {
 }
 
 function AddTaskCells(row) {
-	var cell1 = row.insertCell(0);
-	var cell2 = row.insertCell(1);
-	var cell3 = row.insertCell(2);
-	var cell4 = row.insertCell(3);
-	var cell5 = row.insertCell(4);
-	var cell6 = row.insertCell(5);
+	let cell1 = row.insertCell(0);
+	let cell2 = row.insertCell(1);
+	let cell3 = row.insertCell(2);
+	let cell4 = row.insertCell(3);
+	let cell5 = row.insertCell(4);
+	let cell6 = row.insertCell(5);
 
 	cell1.innerHTML = '<input type="checkbox" class="checkbox" />';
 	cell1.childNodes[0].addEventListener("change", ChangeCheckbox);
@@ -149,16 +149,16 @@ function NewTask() {
 }
 
 function AddTaskReturned(data) {
-	var json = JSON.parse(data);
+	let json = JSON.parse(data);
 
 	if (json["status"] == "success") {
 		DisplayInfo("success");
 
-		var table = document
+		let table = document
 			.getElementById("taskList")
 			.getElementsByTagName("tbody")[0];
 
-		var row = table.insertRow(-1);
+		let row = table.insertRow(-1);
 
 		row.id = json["taskID"];
 
@@ -175,9 +175,9 @@ function AddTaskReturned(data) {
 }
 
 function RequestDelete() {
-	var taskID = this.parentElement.parentElement.id;
+	let taskID = this.parentElement.parentElement.id;
 
-	var dataOutwards = {
+	let dataOutwards = {
 		taskID,
 		checklistID: GetChecklistID(),
 		password: GetPassword(),
@@ -187,10 +187,10 @@ function RequestDelete() {
 }
 
 function DeleteReturned(data) {
-	var json = JSON.parse(data);
+	let json = JSON.parse(data);
 
 	if (json["status"] === "success") {
-		var row = document.getElementById(json["taskID"]);
+		let row = document.getElementById(json["taskID"]);
 		row.remove();
 
 		CurrentPasswordError("");
@@ -205,33 +205,33 @@ function DeleteReturned(data) {
 
 function ChangeCheckbox() {
 	//sets 1 if checked and 0 if not.
-	var newValue = 0;
+	let newValue = 0;
 
 	if (this.checked) newValue = 1;
 
 	RequestUpdate(this, "checkbox", newValue);
 }
 function ChangeTitle() {
-	var newValue = this.value;
+	let newValue = this.value;
 	RequestUpdate(this, "taskTitle", newValue);
 }
 function ChangeDescription() {
-	var newValue = this.value;
+	let newValue = this.value;
 	RequestUpdate(this, "description", newValue);
 }
 function ChangePriority() {
-	var newValue = this.value;
+	let newValue = this.value;
 	RequestUpdate(this, "priority", newValue);
 }
 function ChangeStatus() {
-	var newValue = this.value;
+	let newValue = this.value;
 	RequestUpdate(this, "status", newValue);
 }
 
 function RequestUpdate(node, column, newValue) {
-	var taskID = node.parentElement.parentElement.id;
+	let taskID = node.parentElement.parentElement.id;
 
-	var dataOutwards = {
+	let dataOutwards = {
 		taskID,
 		column,
 		newValue,
@@ -247,12 +247,12 @@ function RequestUpdate(node, column, newValue) {
 }
 
 function UpdateChecklistReturned(data) {
-	var json = JSON.parse(data);
+	let json = JSON.parse(data);
 	if (json["column"] === "taskTitle") {
-		var taskID = json["taskID"];
-		var row = document.getElementById(taskID);
-		var input = row.cells[1].childNodes[0];
-		var errorMsg = row.cells[1].childNodes[1];
+		let taskID = json["taskID"];
+		let row = document.getElementById(taskID);
+		let input = row.cells[1].childNodes[0];
+		let errorMsg = row.cells[1].childNodes[1];
 
 		if (json["status"] !== "success") {
 			input.classList.add("is-invalid");
@@ -262,10 +262,10 @@ function UpdateChecklistReturned(data) {
 			errorMsg.innerText = "";
 		}
 	} else if (json["column"] === "description") {
-		var taskID = json["taskID"];
-		var row = document.getElementById(taskID);
-		var input = row.cells[2].childNodes[0];
-		var errorMsg = row.cells[2].childNodes[1];
+		let taskID = json["taskID"];
+		let row = document.getElementById(taskID);
+		let input = row.cells[2].childNodes[0];
+		let errorMsg = row.cells[2].childNodes[1];
 
 		if (json["status"] !== "success") {
 			input.classList.add("is-invalid");
@@ -283,7 +283,7 @@ function UpdateChecklistReturned(data) {
 	}
 }
 
-var sortDirection = {
+let sortDirection = {
 	checkbox: true,
 	title: true,
 	description: true,
@@ -293,16 +293,16 @@ var sortDirection = {
 
 function SortChecklist(column) {
 	//bubble sort
-	var table = document
+	let table = document
 		.getElementById("taskList")
 		.getElementsByTagName("tbody")[0];
-	var rows = table.rows;
-	var loop = true;
+	let rows = table.rows;
+	let loop = true;
 
 	while (loop) {
 		loop = false;
 
-		for (var i = 0; i < rows.length - 1; i++) {
+		for (let i = 0; i < rows.length - 1; i++) {
 			//start at 1 to ignore the title row
 			if (sortDirection[column]) {
 				if (CompareRows(rows[i], rows[i + 1], column)) {
@@ -340,13 +340,13 @@ function CompareRows(row1, row2, column) {
 				row2.getElementsByTagName("textarea")[0].value.toLowerCase()
 			);
 		case "priority":
-			var row1Priority = row1.getElementsByTagName("select")[0].value;
-			var row2Priority = row2.getElementsByTagName("select")[0].value;
+			let row1Priority = row1.getElementsByTagName("select")[0].value;
+			let row2Priority = row2.getElementsByTagName("select")[0].value;
 
 			return GetPriorityAsInt(row1Priority) > GetPriorityAsInt(row2Priority);
 		case "status":
-			var row1Status = row1.getElementsByTagName("select")[1].value;
-			var row2Status = row2.getElementsByTagName("select")[1].value;
+			let row1Status = row1.getElementsByTagName("select")[1].value;
+			let row2Status = row2.getElementsByTagName("select")[1].value;
 
 			return GetStatusAsInt(row1Status) > GetStatusAsInt(row2Status);
 	}
@@ -376,7 +376,7 @@ function GetStatusAsInt(value) {
 }
 
 function SwapRows(row1, row2) {
-	var tempCheckbox,
+	let tempCheckbox,
 		tempTitle,
 		tempDescription,
 		tempPriority,
@@ -416,7 +416,7 @@ function SwapRows(row1, row2) {
 }
 
 function GetChecklistID() {
-	var fileName = location.pathname.split("/").slice(-1)[0];
+	let fileName = location.pathname.split("/").slice(-1)[0];
 
 	if (fileName.charAt(fileName.length - 4) == ".") {
 		fileName = fileName.slice(0, -4);
@@ -426,7 +426,7 @@ function GetChecklistID() {
 }
 
 function GetPassword() {
-	var currPassInput = document.getElementById("currentPassword");
+	let currPassInput = document.getElementById("currentPassword");
 
 	if (currPassInput) {
 		return currPassInput.value;
@@ -436,7 +436,7 @@ function GetPassword() {
 }
 
 function DisplayInfo(data) {
-	var notify = document.getElementById("notify");
+	let notify = document.getElementById("notify");
 
 	notify.innerHTML = data;
 }
