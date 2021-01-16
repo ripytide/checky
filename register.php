@@ -29,7 +29,7 @@
 			<div class="row justify-content-center">
 				<div class="login-box border border-4 border-dark rounded px-3 pt-3">
 					<h1 class="mb-3 text-center text-decoration-underline">Register</h1>
-					<form class="has-validation">
+					<form class="has-validation" onsubmit="Register();return false">
 						<div class="mb-3">
 							<label for="username" class="form-label">username</label>
 							<input
@@ -50,7 +50,7 @@
 							<p id="passErrorMsg" class="invalid-feedback"></p>
 							<div class="text-center m-2">
 								<button
-									type="button"
+									type="submit"
 									class="btn btn-primary text-center"
 									onclick="Register()"
 								>

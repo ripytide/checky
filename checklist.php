@@ -35,7 +35,7 @@
 					<h3 class="mb-3">
 						Please enter the checklist Password for access to this checklist
 					</h3>
-					<form class="has-validation row justify-content-center">
+					<form class="has-validation row justify-content-center" onsubmit="ReGrabChecklist();return false">
 						<div class="mb-3" style="width: 400px">
 							<input
 								id="authPassword"
@@ -45,7 +45,7 @@
 							<p id="authPassErrorMsg" class="invalid-feedback"></p>
 							<div class="text-center m-2">
 								<button
-									type="button"
+									type="submit"
 									class="btn btn-primary"
 									onclick="ReGrabChecklist()"
 								>
