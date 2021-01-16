@@ -14,17 +14,17 @@ function Login() {
 function LoginReturned(data) {
 	let output = JSON.parse(data);
 
-	userErrorMsg = document.getElementById("userErrorMsg");
-	passErrorMsg = document.getElementById("passErrorMsg");
-
-	userInput = document.getElementById("username");
-	passInput = document.getElementById("password");
-
 	if (output["status"] == "success") {
 		window.location.href = "index";
 
 		return;
 	}
+
+	userErrorMsg = document.getElementById("userErrorMsg");
+	passErrorMsg = document.getElementById("passErrorMsg");
+
+	userInput = document.getElementById("username");
+	passInput = document.getElementById("password");
 
 	if (output["userErrorMsg"] != "") {
 		userErrorMsg.innerHTML = output["userErrorMsg"];

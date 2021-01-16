@@ -16,9 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($userErrorMsg === "" and $passErrorMsg === ""){
         Query("INSERT INTO users VALUES (?, ?)", "ss", $username, $password);
 
-        $output["status"] = "success";
-        $output["userErrorMsg"] = "";
-        $output["passErrorMsg"] = "";
+        //credentials are correct so start a session
+		session_start();
+
+		//store non-sensitive data in session variable
+		$_SESSION["loggedin"] = true;
+		$_SESSION["username"] = $username;;
+		
+		//commit session
+		session_commit();
 
     } else {
         $output["status"] = "fail";
