@@ -22,12 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$_SESSION["username"] = $username;;
 		
 		//commit session
-		session_commit();
-
-        $output["status"] = "success";
-        $output["userErrorMsg"] = "";
-        $output["passErrorMsg"] = "";
-
+        session_commit();
+        
+        header("Location: index");
+        die();
+        
     } else {
         $output["status"] = "fail";
         $output["userErrorMsg"] = $feedback[0];

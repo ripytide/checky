@@ -24,7 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$_SESSION["username"] = $username;;
 		
 		//commit session
-		session_commit();
+        session_commit();
+        
+        header("Location: index");
+        die();
 
     } else {
         $output["status"] = "fail";

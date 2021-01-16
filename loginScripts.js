@@ -14,12 +14,6 @@ function Login() {
 function LoginReturned(data) {
 	let output = JSON.parse(data);
 
-	if (output["status"] == "success") {
-		window.location.href = "index";
-
-		return;
-	}
-
 	userErrorMsg = document.getElementById("userErrorMsg");
 	passErrorMsg = document.getElementById("passErrorMsg");
 
