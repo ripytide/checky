@@ -53,7 +53,6 @@
 								<button
 									type="submit"
 									class="btn btn-primary text-center"
-									onclick="Login()"
 								>
 									Login
 								</button>

@@ -52,7 +52,6 @@
 								<button
 									type="submit"
 									class="btn btn-primary text-center"
-									onclick="Register()"
 								>
 									Signup
 								</button>

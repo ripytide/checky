@@ -47,7 +47,6 @@
 								<button
 									type="submit"
 									class="btn btn-primary"
-									onclick="ReGrabChecklist()"
 								>
 									Authenticate
 								</button>
