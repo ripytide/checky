@@ -28,7 +28,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $output["checklistID"] = $checklistID;
     }
 
-    if ($valid){
+    $checklistUsername = GetUsername($checklistID);
+
+    session_start();
+    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        $loggedin = true;
+        $username = $_SESSION["username"];
+    } else{
+        $loggedin = false;
+    }
+
+    if ($valid and ($loggedin and $username === $checklistUsername)){
         Query("UPDATE checklist SET $column = ? WHERE checklistID = ?", "ss", $newValue, $checklistID);
 
         $output["status"] = "success";
