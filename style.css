@@ -47,8 +47,53 @@ footer {
 	display: none;
 }
 
-#notify {
-	margin-bottom: 100px;
+#managementBox {
+	margin-top: 100px;
+}
+
+#statusBox {
+	z-index: -1;
+
+	position: fixed;
+
+	top: 0px;
+	right: 50px;
+
+	width: auto;
+	height: auto;
+
+	opacity: 0;
+
+	background-color: rgb(40, 128, 59);
+	border-radius: 6px;
+}
+
+.flexCenter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.successLine {
+	margin-top: 12px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.failLine {
+	margin-top: 15px;
+	height: 40px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#errorMsg {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#successIcon {
+	margin-top: 3px;
 }
 
 /* background: -webkit-linear-gradient(

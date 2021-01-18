@@ -13,13 +13,13 @@ function GrabChecklist() {
 function GrabChecklistReturned(data) {
 	let json = JSON.parse(data);
 
+	HandleStatus(json);
+
 	if (json["tasksAccess"]) {
 		$("#taskListDiv").show();
 		ShowChecklist(json["tasks"]);
 	} else if (!json["userChecklist"]) {
 		$("#authenticationBox").show();
-	} else {
-		DisplayInfo(json["errorMsg"]);
 	}
 
 	if (json["settingsAccess"]) {
@@ -55,6 +55,8 @@ function ReGrabChecklist() {
 
 function ReGrabChecklistReturned(data) {
 	let json = JSON.parse(data);
+
+	HandleStatus(json);
 
 	if (json["tasksAccess"]) {
 		//if task is given access so is settings access given
@@ -144,16 +146,16 @@ function NewTask() {
 	$.post(
 		"../../Back-End/Task/newTask.php",
 		{ checklistID: GetChecklistID(), password: GetPassword() },
-		AddTaskReturned
+		NewTaskReturned
 	);
 }
 
-function AddTaskReturned(data) {
+function NewTaskReturned(data) {
 	let json = JSON.parse(data);
 
-	if (json["status"] == "success") {
-		DisplayInfo("success");
+	HandleStatus(json);
 
+	if (json["status"] === "success") {
 		let table = document
 			.getElementById("taskList")
 			.getElementsByTagName("tbody")[0];
@@ -165,12 +167,8 @@ function AddTaskReturned(data) {
 		AddTaskCells(row);
 
 		CurrentPasswordError("");
-	} else {
-		if (json["userChecklist"]) {
-			DisplayInfo(json["errorMsg"]);
-		} else {
-			CurrentPasswordError(json["errorMsg"]);
-		}
+	} else if (!json["userChecklist"]) {
+		CurrentPasswordError(json["errorMsg"]);
 	}
 }
 
@@ -189,17 +187,15 @@ function RequestDelete() {
 function DeleteReturned(data) {
 	let json = JSON.parse(data);
 
+	HandleStatus(json);
+
 	if (json["status"] === "success") {
 		let row = document.getElementById(json["taskID"]);
 		row.remove();
 
 		CurrentPasswordError("");
-	} else {
-		if (json["userChecklist"]) {
-			DisplayInfo(json["errorMsg"]);
-		} else {
-			CurrentPasswordError(json["errorMsg"]);
-		}
+	} else if (!json["userChecklist"]) {
+		CurrentPasswordError(json["errorMsg"]);
 	}
 }
 
@@ -248,6 +244,9 @@ function RequestUpdate(node, column, newValue) {
 
 function UpdateChecklistReturned(data) {
 	let json = JSON.parse(data);
+
+	HandleStatus(json);
+
 	if (json["column"] === "taskTitle") {
 		let taskID = json["taskID"];
 		let row = document.getElementById(taskID);
@@ -274,12 +273,8 @@ function UpdateChecklistReturned(data) {
 			input.classList.remove("is-invalid");
 			errorMsg.innerText = "";
 		}
-	} else {
-		if (json["userChecklist"]) {
-			DisplayInfo(json["errorMsg"]);
-		} else {
-			CurrentPasswordError(json["errorMsg"]);
-		}
+	} else if (!json["userChecklist"]) {
+		CurrentPasswordError(json["errorMsg"]);
 	}
 }
 
@@ -435,8 +430,59 @@ function GetPassword() {
 	}
 }
 
-function DisplayInfo(data) {
-	let notify = document.getElementById("notify");
+var statusDisplayed = false;
+function HandleStatus(json) {
+	if (!statusDisplayed) {
+		statusDisplayed = true;
 
-	notify.innerHTML = data;
+		$("#statusMsg").text(json["status"]);
+
+		if (json["status"] === "success") {
+			//switch icons
+			$("#failIcon").hide();
+			$("#successIcon").show();
+			//remove error msg
+			$("#errorMsg").text("");
+
+			//toggle css as their is no error msg
+			$("#statusLine").removeClass("failLine");
+			$("#statusLine").addClass("successLine");
+
+			//change color to green
+			$("#statusBox").css("backgroundColor", "green");
+		} else if (json["status"] === "fail") {
+			//switch icone
+			$("#successIcon").hide();
+			$("#failIcon").show();
+
+			//add error msg
+			$("#errorMsg").text(json["errorMsg"]);
+
+			//toggle css for space for error msg
+			$("#statusLine").removeClass("successLine");
+			$("#statusLine").addClass("failLine");
+
+			//change color to red
+			$("#statusBox").css("backgroundColor", "red");
+		} else {
+			console.log("incorrect status given");
+		}
+
+		var status = $("#statusBox");
+
+		//reset status div
+		status.css({ top: "0px", opacity: 0 });
+
+		status.show();
+		status.animate({
+			top: "75px",
+			opacity: 1,
+		});
+
+		//wait 1.8s then make the notification fade out
+		setTimeout(() => {
+			status.fadeOut();
+			statusDisplayed = false;
+		}, 1800);
+	}
 }
