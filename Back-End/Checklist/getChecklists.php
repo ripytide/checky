@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $result = Query("SELECT * FROM checklist WHERE username = ?", "s", $username);
 
         if ($result->num_rows === 0){
-            $output["status"] = "caution";
+            $output["status"] = "success";
             $output["errorMsg"] = "no tasks for that checklist";
 
         } else{
@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     } else{
         $output["status"] = "fail";
+        $output["errorMsg"] = "You need to be logged in to use the My Checklists page";
     }
 
     echo(json_encode($output));

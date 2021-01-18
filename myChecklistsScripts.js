@@ -9,9 +9,9 @@ function GetChecklists() {
 function ShowChecklists(data) {
 	json = JSON.parse(data);
 
-	if (json["status"] == "success" || json["status"] == "caution") {
-		DisplayInfo(json["status"]);
+	HandleStatus(json);
 
+	if (json["status"] == "success") {
 		let table = document
 			.getElementById("checklistList")
 			.getElementsByTagName("tbody")[0];
@@ -25,8 +25,6 @@ function ShowChecklists(data) {
 			AddChecklistCells(row, results[i]["checklistID"]);
 			row.cells[0].childNodes[0].value = results[i]["checklistTitle"];
 		}
-	} else {
-		DisplayInfo("Fail");
 	}
 }
 
@@ -37,9 +35,9 @@ function NewChecklist() {
 function AddChecklistRow(data) {
 	json = JSON.parse(data);
 
-	if (json["status"] == "success") {
-		DisplayInfo("success");
+	HandleStatus(json);
 
+	if (json["status"] == "success") {
 		let table = document
 			.getElementById("checklistList")
 			.getElementsByTagName("tbody")[0];
@@ -49,8 +47,6 @@ function AddChecklistRow(data) {
 		row.id = json["checklistID"];
 
 		AddChecklistCells(row, json["checklistID"]);
-	} else {
-		DisplayInfo("Fail");
 	}
 }
 
@@ -87,7 +83,7 @@ function RequestDelete() {
 function DeleteReturned(data) {
 	let json = JSON.parse(data);
 
-	DisplayInfo(json["status"]);
+	HandleStatus(json);
 
 	let row = document.getElementById(json["checklistID"]);
 
@@ -114,7 +110,7 @@ function RequestUpdate(node, column, newValue) {
 function UpdateReturned(data) {
 	let json = JSON.parse(data);
 
-	DisplayInfo(json["status"]);
+	HandleStatus(json);
 
 	if (json["column"] == "checklistTitle") {
 		let checklistID = json["checklistID"];
@@ -130,10 +126,4 @@ function UpdateReturned(data) {
 			errorMsg.innerText = "";
 		}
 	}
-}
-
-function DisplayInfo(data) {
-	let notify = document.getElementById("notify");
-
-	notify.innerHTML = data;
 }

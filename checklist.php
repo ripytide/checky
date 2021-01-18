@@ -23,6 +23,7 @@
 		<title>Checky - Checklist</title>
 	</head>
 	<body>
+		<script src="../sharedScripts.js"></script>
 		<script src="../checklistScripts.js"></script>
 		<script src="../settingsScripts.js"></script>
 

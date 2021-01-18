@@ -30,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     } else{
         $output["status"] = "fail";
+        $output["errorMsg"] = "You need to be logged in to use the My Checklists page";
     }
     echo(json_encode($output));
 }

@@ -20,14 +20,13 @@ function RequestAccessUpdate() {
 function UpdateAccessReturned(data) {
 	json = JSON.parse(data);
 
+	HandleStatus(json);
+
 	if (json["status"] === "success") {
-		DisplayInfo(json["status"]);
 		CurrentPasswordError("");
 		currentAccess = json["access"];
 	} else {
-		DisplayInfo(json["status"]);
 		CurrentPasswordError(json["currentPassErrorMsg"]);
-
 		$("#access").val(currentAccess);
 	}
 }
@@ -47,7 +46,7 @@ function RequestSetPassword() {
 function SetPasswordReturned(data) {
 	let json = JSON.parse(data);
 
-	DisplayInfo(json["status"]);
+	HandleStatus(json);
 
 	passErrorMsg = document.getElementById("setPassErrorMsg");
 
@@ -91,7 +90,8 @@ function RequestChangePassword() {
 
 function ChangePasswordReturned(data) {
 	let json = JSON.parse(data);
-	DisplayInfo(json["status"]);
+
+	HandleStatus(json);
 
 	if (json["status"] === "success") {
 		CurrentPasswordError("");
@@ -115,6 +115,8 @@ function RequestRemovePassword() {
 
 function RemovePasswordReturned(data) {
 	let json = JSON.parse(data);
+
+	HandleStatus(json);
 
 	if (json["status"] == "success") {
 		$("#accessRow").hide();
