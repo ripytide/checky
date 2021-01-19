@@ -21,9 +21,21 @@
 		<title>Checky - Register</title>
 	</head>
 	<body>
+		<script src="sharedScripts.js"></script>
 		<script src="registerScripts.js"></script>
 
 		<?php require("getNavBar.php"); ?>
+
+		<div id="statusBox">
+			<div id="statusLine" class="flexCenter">
+				<i class="fas fa-check-circle icon fa-2x" id="successIcon"></i>
+				<i class="far fa-times-circle icon fa-2x" id="failIcon"></i>
+				<h1 id="statusMsg" class="align-middle"></h1>
+			</div>
+			<div id="errorMsgLine" class="flexCenter">
+				<p id="errorMsg"></p>
+			</div>	
+		</div>
 
 		<div class="container" style="margin-top: 10%">
 			<div class="row justify-content-center">

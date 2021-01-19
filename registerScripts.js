@@ -12,25 +12,31 @@ function Register() {
 }
 
 function RegisterReturned(data) {
-	let output = JSON.parse(data);
+	let json = JSON.parse(data);
 
-	userErrorMsg = document.getElementById("userErrorMsg");
-	passErrorMsg = document.getElementById("passErrorMsg");
+	HandleStatus(json);
 
-	userInput = document.getElementById("username");
-	passInput = document.getElementById("password");
-
-	if (output["userErrorMsg"] != "") {
-		userErrorMsg.innerHTML = output["userErrorMsg"];
-		userInput.classList.add("is-invalid");
+	if (json["status"] === "success") {
+		window.location.href = "index";
 	} else {
-		userInput.classList.remove("is-invalid");
-	}
+		userErrorMsg = document.getElementById("userErrorMsg");
+		passErrorMsg = document.getElementById("passErrorMsg");
 
-	if (output["passErrorMsg"] != "") {
-		passErrorMsg.innerHTML = output["passErrorMsg"];
-		passInput.classList.add("is-invalid");
-	} else {
-		passInput.classList.remove("is-invalid");
+		userInput = document.getElementById("username");
+		passInput = document.getElementById("password");
+
+		if (json["userErrorMsg"] != "") {
+			userErrorMsg.innerHTML = json["userErrorMsg"];
+			userInput.classList.add("is-invalid");
+		} else {
+			userInput.classList.remove("is-invalid");
+		}
+
+		if (json["passErrorMsg"] != "") {
+			passErrorMsg.innerHTML = json["passErrorMsg"];
+			passInput.classList.add("is-invalid");
+		} else {
+			passInput.classList.remove("is-invalid");
+		}
 	}
 }

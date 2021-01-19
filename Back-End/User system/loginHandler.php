@@ -23,9 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		
 		//commit session
         session_commit();
-        
-        header("Location: index");
-        die();
+
+        $output["status"] = "success";
         
     } else {
         $output["status"] = "fail";
