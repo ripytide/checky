@@ -25,6 +25,7 @@ function GrabChecklistReturned(data) {
 			(json["access"] === "Public not editable" &&
 				json["settingsAccess"] === false) //settings access only false for non authentic user checklist request
 		) {
+			$("#editButton").show();
 			SetReadOnly(true);
 		}
 	} else if (!json["userChecklist"]) {
@@ -92,6 +93,28 @@ function ReGrabChecklistReturned(data) {
 	} else {
 		$("#authPassword").addClass("is-invalid");
 		$("#authPassErrorMsg").text(json["errorMsg"]);
+	}
+}
+
+function RequestReadAccess() {
+	$.post(
+		"../../Back-End/Task/readAccess.php",
+		{ checklistID: GetChecklistID(), password: GetPassword() },
+		ReadAccessReturned
+	);
+}
+
+function ReadAccessReturned(data) {
+	let json = JSON.parse(data);
+
+	HandleStatus(json);
+
+	if (json["status"] === "success") {
+		CurrentPasswordError("");
+		SetReadOnly(false);
+		$("#editButton").remove();
+	} else {
+		CurrentPasswordError(json["errorMsg"]);
 	}
 }
 

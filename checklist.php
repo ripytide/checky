@@ -182,7 +182,7 @@
 						</tbody>
 					</table>
 
-					<button id="editButton" type="button" class="btn btn-primary btn-sm">
+					<button id="editButton" type="button" class="btn btn-primary btn-sm hide" onclick="RequestReadAccess()">
 						Get edit permissions
 					</button>
 
