@@ -90,12 +90,14 @@
 						</thead>
 						<tbody></tbody>
 					</table>
+
 					<button class="btn btn-primary mt-2" onclick="NewTask()">
 						New task
 					</button>
+
 				</div>
-				<div class="col-4" id="managementBox">
-					<h1 id="management" class="hide">Management</h1>
+				<div class="col-4 hide" id="managementBox">
+					<h1>Management</h1>
 
 					<table class="table table-dark table-striped table-hover">
 						<tbody id="settingsList">
@@ -179,6 +181,11 @@
 							</tr>
 						</tbody>
 					</table>
+
+					<button id="editButton" type="button" class="btn btn-primary btn-sm">
+						Get edit permissions
+					</button>
+
 				</div>
 			</div>
 

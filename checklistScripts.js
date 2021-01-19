@@ -18,12 +18,21 @@ function GrabChecklistReturned(data) {
 	if (json["tasksAccess"]) {
 		$("#taskListDiv").show();
 		ShowChecklist(json["tasks"]);
+
+		//handles readonly
+		if (
+			(json["access"] === "Public not editable" && !json["userChecklist"]) ||
+			(json["access"] === "Public not editable" &&
+				json["settingsAccess"] === false) //settings access only false for non authentic user checklist request
+		) {
+			SetReadOnly(true);
+		}
 	} else if (!json["userChecklist"]) {
 		$("#authenticationBox").show();
 	}
 
 	if (json["settingsAccess"]) {
-		$("#management").show();
+		$("#managementBox").show();
 
 		if (json["userChecklist"]) {
 			$("#accessRow").show();
@@ -54,6 +63,7 @@ function ReGrabChecklist() {
 }
 
 function ReGrabChecklistReturned(data) {
+	//only called for non user checklists
 	let json = JSON.parse(data);
 
 	HandleStatus(json);
@@ -62,12 +72,11 @@ function ReGrabChecklistReturned(data) {
 		//if task is given access so is settings access given
 		//tasks stuff
 		$("#authenticationBox").hide();
-
 		$("#taskListDiv").show();
 		ShowChecklist(json["tasks"]);
 
 		//setting stuff
-		$("#management").show();
+		$("#managementBox").show();
 
 		if (json["passwordSet"]) {
 			$("#accessRow").show();
@@ -83,6 +92,21 @@ function ReGrabChecklistReturned(data) {
 	} else {
 		$("#authPassword").addClass("is-invalid");
 		$("#authPassErrorMsg").text(json["errorMsg"]);
+	}
+}
+
+function SetReadOnly(bool) {
+	let table = document
+		.getElementById("taskList")
+		.getElementsByTagName("tbody")[0];
+	let rows = table.rows;
+
+	for (let i = 0; i < rows.length; i++) {
+		rows[i].cells[0].childNodes[0].disabled = bool;
+		rows[i].cells[1].childNodes[0].readOnly = bool;
+		rows[i].cells[2].childNodes[0].readOnly = bool;
+		rows[i].cells[3].childNodes[0].disabled = bool;
+		rows[i].cells[4].childNodes[0].disabled = bool;
 	}
 }
 
@@ -122,19 +146,19 @@ function AddTaskCells(row) {
 	cell1.childNodes[0].addEventListener("change", ChangeCheckbox);
 
 	cell2.innerHTML =
-		'<input type="text"class="form-control light-grey"placeholder="title here"/><p class="invalid-feedback"></p>';
+		'<input type="text"class="form-control"placeholder="title here"/><p class="invalid-feedback"></p>';
 	cell2.childNodes[0].addEventListener("change", ChangeTitle);
 
 	cell3.innerHTML =
-		'<textarea type="text" class="form-control light-grey" placeholder="description here"></textarea><p class="invalid-feedback"></p>';
+		'<textarea type="text" class="form-control" placeholder="description here"></textarea><p class="invalid-feedback"></p>';
 	cell3.childNodes[0].addEventListener("change", ChangeDescription);
 
 	cell4.innerHTML =
-		'<select class="form-select light-grey" aria-label=".form-select-lg example"><option selected value="None">None</option><option value="Low">Low</option><option value="Medium">Medium</option><option value="High">High</option></select>';
+		'<select class="form-select" aria-label=".form-select-lg example"><option selected value="None">None</option><option value="Low">Low</option><option value="Medium">Medium</option><option value="High">High</option></select>';
 	cell4.childNodes[0].addEventListener("change", ChangePriority);
 
 	cell5.innerHTML =
-		'<select class="form-select light-grey" aria-label=".form-select-lg example"><option selected value="Not started">Not started</option><option value="In progress">In progress</option><option value="Finished">Finished</option></select>';
+		'<select class="form-select" aria-label=".form-select-lg example"><option selected value="Not started">Not started</option><option value="In progress">In progress</option><option value="Finished">Finished</option></select>';
 	cell5.childNodes[0].addEventListener("change", ChangeStatus);
 
 	cell6.innerHTML =

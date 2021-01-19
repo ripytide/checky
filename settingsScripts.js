@@ -136,14 +136,11 @@ function CurrentPasswordError(errorMsg) {
 	let currentPassErrorMsg = document.getElementById("currentPassErrorMsg");
 	let currentPass = document.getElementById("currentPassword");
 
-	if (currentPass) {
-		currentPassErrorMsg.innerHTML = errorMsg;
-
-		if (errorMsg == "") {
-			currentPass.classList.remove("is-invalid");
-		} else {
-			currentPass.classList.add("is-invalid");
-		}
+	currentPassErrorMsg.innerHTML = errorMsg;
+	if (currentPass && errorMsg) {
+		currentPass.classList.add("is-invalid");
+	} else {
+		currentPass.classList.remove("is-invalid");
 	}
 }
 

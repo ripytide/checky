@@ -96,6 +96,9 @@ footer {
 	margin-top: 3px;
 }
 
+.form-control[readonly] {
+	background-color: grey;
+}
 /* background: -webkit-linear-gradient(
 		to right,
 		#155799,
