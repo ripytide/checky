@@ -37,6 +37,14 @@ function GetUsername($checklistID){
     return($username);
 }
 
+function GetChecklistTitle($checklistID){
+    $result = Query("SELECT checklistTitle FROM checklist WHERE checklistID = ?", "s", $checklistID);
+
+    $checklistTitle = $result->fetch_assoc()["checklistTitle"];
+
+    return($checklistTitle);
+}
+
 function Connect(){
     $db_servername = "localhost";
     $db_username = "root";

@@ -70,6 +70,9 @@
 				</div>
 
 				<div id="taskListDiv" class="col-8 hide">
+
+					<input id="checklistTitle" class="form-control" placeholder="checklist title" contenteditable="true" onchange="ChangeChecklistTitle()">
+
 					<table
 						id="taskList" 
 						class="table table-dark table-striped table-hover"

@@ -18,6 +18,7 @@ function GrabChecklistReturned(data) {
 	if (json["tasksAccess"]) {
 		$("#taskListDiv").show();
 		ShowChecklist(json["tasks"]);
+		$("#checklistTitle").val(json["checklistTitle"]);
 
 		//handles readonly
 		if (
@@ -73,8 +74,10 @@ function ReGrabChecklistReturned(data) {
 		//if task is given access so is settings access given
 		//tasks stuff
 		$("#authenticationBox").hide();
+
 		$("#taskListDiv").show();
 		ShowChecklist(json["tasks"]);
+		$("#checklistTitle").val(json["checklistTitle"]);
 
 		//setting stuff
 		$("#managementBox").show();
@@ -130,6 +133,7 @@ function SetReadOnly(bool) {
 		rows[i].cells[2].childNodes[0].readOnly = bool;
 		rows[i].cells[3].childNodes[0].disabled = bool;
 		rows[i].cells[4].childNodes[0].disabled = bool;
+		document.getElementById("checklistTitle").contentEditable = bool;
 	}
 }
 
@@ -246,32 +250,59 @@ function DeleteReturned(data) {
 	}
 }
 
+function ChangeChecklistTitle() {
+	let dataOutwards = {
+		newValue: $("#checklistTitle").val(),
+		column: "checklistTitle",
+		checklistID: GetChecklistID(),
+		password: GetPassword(),
+	};
+
+	$.post(
+		"../Back-End/Checklist/updateChecklist.php",
+		dataOutwards,
+		UpdateChecklistTitleReturned
+	);
+}
+
+function UpdateChecklistTitleReturned(data) {
+	json = JSON.parse(data);
+
+	HandleStatus(json);
+
+	if (json["status"] === "success") {
+		CurrentPasswordError("");
+	} else {
+		CurrentPasswordError(json["errorMsg"]);
+	}
+}
+
 function ChangeCheckbox() {
 	//sets 1 if checked and 0 if not.
 	let newValue = 0;
 
 	if (this.checked) newValue = 1;
 
-	RequestUpdate(this, "checkbox", newValue);
+	RequestUpdateCell(this, "checkbox", newValue);
 }
 function ChangeTitle() {
 	let newValue = this.value;
-	RequestUpdate(this, "taskTitle", newValue);
+	RequestUpdateCell(this, "taskTitle", newValue);
 }
 function ChangeDescription() {
 	let newValue = this.value;
-	RequestUpdate(this, "description", newValue);
+	RequestUpdateCell(this, "description", newValue);
 }
 function ChangePriority() {
 	let newValue = this.value;
-	RequestUpdate(this, "priority", newValue);
+	RequestUpdateCell(this, "priority", newValue);
 }
 function ChangeStatus() {
 	let newValue = this.value;
-	RequestUpdate(this, "status", newValue);
+	RequestUpdateCell(this, "status", newValue);
 }
 
-function RequestUpdate(node, column, newValue) {
+function RequestUpdateCell(node, column, newValue) {
 	let taskID = node.parentElement.parentElement.id;
 
 	let dataOutwards = {

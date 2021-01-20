@@ -57,6 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $output["tasks"][] = $row;
             }
         }
+        
+        $output["checklistTitle"] = GetChecklistTitle($checklistID);
 
     } else if ($userChecklist){
         $output["status"] = "fail";
