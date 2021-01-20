@@ -20,7 +20,10 @@
 
 		<div class="collapse navbar-collapse justify-content-end" id="myNavBar">
 			<ul class="navbar-nav">
-                <li class="nav-item mx-2">
+				<li class="nav-item mx-2">
+					<a class="nav-link fw-bold" href="/mychecklists">My Checklists</a>
+				</li>
+            <li class="nav-item mx-2">
 					<a class="nav-link fw-bold" href="/mychecklists"><?php echo($_SESSION["username"]);?></a>
 				</li>
 				<li class="nav-item mx-2">
