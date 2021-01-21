@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php echo(7 ?>
 	<head>
 		<!-- Required meta tags -->
 		<meta charset="utf-8" />
