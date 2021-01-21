@@ -1,0 +1,15 @@
+Header always set Content-Security-Policy: upgrade-insecure-requests
+
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:checky.uk
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} (www\.)?checky.uk
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:checky.uk
+
+
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
