@@ -8,18 +8,9 @@ nav {
 
 footer {
 	background-color: #7a9e9f;
-	position: fixed;
 	width: 100%;
 	left: 0;
 	bottom: 0;
-}
-
-.dark-blue {
-	background-color: #547d85;
-}
-
-.light-grey {
-	background-color: #e2e2e2;
 }
 
 .login-box {
@@ -47,11 +38,12 @@ footer {
 	display: none;
 }
 
-#managementBox {
+.managementBox {
 	margin-top: 100px;
+	max-width: 300px;
 }
 
-#statusBox {
+.statusBox {
 	z-index: -1;
 
 	position: fixed;

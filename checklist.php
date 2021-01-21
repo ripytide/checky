@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+
 		<!-- Required meta tags -->
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<!-- Bootstrap CSS -->
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-			crossorigin="anonymous"
-		/>
 		<!-- Font Awesome CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
@@ -29,38 +23,35 @@
 
 		<?php require("getNavBar.php"); ?>
 
-		<div id="statusBox">
-			<div id="statusLine" class="flexCenter">
+		<div class="statusBox">
+			<div id="statusLine">
 				<i class="fas fa-check-circle icon fa-2x" id="successIcon"></i>
 				<i class="far fa-times-circle icon fa-2x" id="failIcon"></i>
-				<h1 id="statusMsg" class="align-middle"></h1>
+				<h1 id="statusMsg"></h1>
 			</div>
-			<div id="errorMsgLine" class="flexCenter">
+			<div id="errorMsgLine">
 				<p id="errorMsg"></p>
 			</div>	
 		</div>
 
-		<div class="container text-center">
-			<div id="main" class="row justify-content-center">
+			<div id="main">
 				<div
 					id="authenticationBox"
-					class="auth-box hide border border-4 border-dark rounded px-3 pt-3"
+					class="auth-box hide"
 				>
-					<h3 class="mb-3">
+					<h3>
 						Please enter the checklist Password for access to this checklist
 					</h3>
-					<form class="has-validation row justify-content-center" onsubmit="ReGrabChecklist();return false">
-						<div class="mb-3" style="width: 400px">
+					<form onsubmit="ReGrabChecklist();return false">
+						<div>
 							<input
 								id="authPassword"
 								type="password"
-								class="light-grey form-control border border-4 border-dark"
 							/>
-							<p id="authPassErrorMsg" class="invalid-feedback"></p>
-							<div class="text-center m-2">
+							<p id="authPassErrorMsg"></p>
+							<div>
 								<button
 									type="submit"
-									class="btn btn-primary"
 								>
 									Authenticate
 								</button>
@@ -69,13 +60,12 @@
 					</form>
 				</div>
 
-				<div id="taskListDiv" class="col-8 hide">
+				<div id="taskListDiv" class="hide">
 
-					<input id="checklistTitle" class="form-control" placeholder="checklist title" contenteditable="true" onchange="ChangeChecklistTitle()">
+					<input id="checklistTitle" placeholder="checklist title" contenteditable="true" onchange="ChangeChecklistTitle()">
 
 					<table
-						id="taskList" 
-						class="table table-dark table-striped table-hover"
+						id="taskList"
 					>
 						<thead>
 							<tr>
@@ -94,15 +84,15 @@
 						<tbody></tbody>
 					</table>
 
-					<button class="btn btn-primary mt-2" onclick="NewTask()">
+					<button onclick="NewTask()">
 						New task
 					</button>
 
 				</div>
-				<div class="col-4 hide" id="managementBox">
+				<div class="managementBox">
 					<h1>Management</h1>
 
-					<table class="table table-dark table-striped table-hover">
+					<table>
 						<tbody id="settingsList">
 							<tr id="setPasswordRow" class="hide">
 								<td><h2>Set Password</h2></td>
@@ -110,11 +100,9 @@
 									<input
 										id="setPassword"
 										type="password"
-										class="light-grey form-control border border-4 border-dark"
 									/>
-									<p id="setPassErrorMsg" class="invalid-feedback"></p>
+									<p id="setPassErrorMsg"></p>
 									<button
-										class="btn btn-secondary"
 										onclick="RequestSetPassword()"
 									>
 										Set
@@ -126,7 +114,6 @@
 								<td>
 									<select
 										id="access"
-										class="form-select light-grey"
 										aria-label=".form-select-lg example"
 										onchange="RequestAccessUpdate()"
 									>
@@ -148,10 +135,9 @@
 									<input
 										id="currentPassword"
 										type="password"
-										class="form-control border border-4 border-dark"
 										onchange="RemovePasswordError()"
 									/>
-									<p id="currentPassErrorMsg" class="invalid-feedback"></p>
+									<p id="currentPassErrorMsg"></p>
 								</td>
 							</tr>
 							<tr id="newPasswordRow" class="hide">
@@ -160,11 +146,9 @@
 									<input
 										id="newPassword"
 										type="password"
-										class="light-grey form-control border border-4 border-dark"
 									/>
-									<p id="newPassErrorMsg" class="invalid-feedback"></p>
+									<p id="newPassErrorMsg"></p>
 									<button
-										class="btn btn-secondary"
 										onclick="RequestChangePassword()"
 									>
 										Change
@@ -176,7 +160,6 @@
 								<td>
 									<button
 										type="button"
-										class="btn btn-secondary"
 										onclick="RequestRemovePassword()"
 									>
 										Remove
@@ -186,7 +169,7 @@
 						</tbody>
 					</table>
 
-					<button id="editButton" type="button" class="btn btn-primary btn-sm hide" onclick="RequestReadAccess()">
+					<button id="editButton" type="button" class="hide" onclick="RequestReadAccess()">
 						Get edit permissions
 					</button>
 
@@ -194,17 +177,10 @@
 			</div>
 
 			<footer>
-				<div class="container text-center p-3">
+				<div>
 					<span>Copyright© 2020, James Forster, All rights reserved</span>
 				</div>
 			</footer>
 
-			<!-- Bootstrap JS -->
-			<script
-				src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-				integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-				crossorigin="anonymous"
-			></script>
-		</div>
 	</body>
 </html>
