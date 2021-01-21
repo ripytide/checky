@@ -23,7 +23,6 @@ function UpdateAccessReturned(data) {
 	HandleStatus(json);
 
 	if (json["status"] === "success") {
-		CurrentPasswordError("");
 		currentAccess = json["access"];
 	} else {
 		CurrentPasswordError(json["currentPassErrorMsg"]);
@@ -93,9 +92,7 @@ function ChangePasswordReturned(data) {
 
 	HandleStatus(json);
 
-	if (json["status"] === "success") {
-		CurrentPasswordError("");
-	} else {
+	if (json["status"] !== "success") {
 		CurrentPasswordError(json["currentPassErrorMsg"]);
 	}
 }
@@ -132,15 +129,22 @@ function RemovePasswordReturned(data) {
 	}
 }
 
+function RemovePasswordError() {
+	let currentPassErrorMsg = document.getElementById("currentPassErrorMsg");
+	let currentPass = document.getElementById("currentPassword");
+
+	currentPassErrorMsg.innerHTML = "";
+
+	currentPass.removeClass("is-invalid");
+}
+
 function CurrentPasswordError(errorMsg) {
 	let currentPassErrorMsg = document.getElementById("currentPassErrorMsg");
 	let currentPass = document.getElementById("currentPassword");
 
-	currentPassErrorMsg.innerHTML = errorMsg;
-	if (currentPass && errorMsg) {
+	if (currentPass) {
+		currentPassErrorMsg.innerHTML = errorMsg;
 		currentPass.classList.add("is-invalid");
-	} else {
-		currentPass.classList.remove("is-invalid");
 	}
 }
 

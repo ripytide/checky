@@ -113,7 +113,6 @@ function ReadAccessReturned(data) {
 	HandleStatus(json);
 
 	if (json["status"] === "success") {
-		CurrentPasswordError("");
 		SetReadOnly(false);
 		$("#editButton").remove();
 	} else {
@@ -216,8 +215,6 @@ function NewTaskReturned(data) {
 		row.id = json["taskID"];
 
 		AddTaskCells(row);
-
-		CurrentPasswordError("");
 	} else if (!json["userChecklist"]) {
 		CurrentPasswordError(json["errorMsg"]);
 	}
@@ -243,8 +240,6 @@ function DeleteReturned(data) {
 	if (json["status"] === "success") {
 		let row = document.getElementById(json["taskID"]);
 		row.remove();
-
-		CurrentPasswordError("");
 	} else if (!json["userChecklist"]) {
 		CurrentPasswordError(json["errorMsg"]);
 	}
@@ -270,9 +265,7 @@ function UpdateChecklistTitleReturned(data) {
 
 	HandleStatus(json);
 
-	if (json["status"] === "success") {
-		CurrentPasswordError("");
-	} else {
+	if (json["status"] !== "success") {
 		CurrentPasswordError(json["errorMsg"]);
 	}
 }

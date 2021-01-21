@@ -149,6 +149,7 @@
 										id="currentPassword"
 										type="password"
 										class="form-control border border-4 border-dark"
+										onchange="RemovePasswordError()"
 									/>
 									<p id="currentPassErrorMsg" class="invalid-feedback"></p>
 								</td>
