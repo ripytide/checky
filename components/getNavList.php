@@ -1,3 +1,6 @@
+<?php
+$loggedIn = isset($_SESSION["loggedin"]) && ($_SESSION["loggedin"] === true);
+?>
 <?php if ($loggedIn): ?>
 <li>
    <a href="/mychecklists">My Checklists</a>

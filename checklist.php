@@ -179,7 +179,7 @@
 				</div>
 			</div>
 
-			<?php require("components/footer.php"); ?>
+			<?php require("components/footer.html"); ?>
 
 	</body>
 </html>

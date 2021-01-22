@@ -168,27 +168,27 @@ function AddTaskCells(row) {
 	let cell5 = row.insertCell(4);
 	let cell6 = row.insertCell(5);
 
-	cell1.innerHTML = '<input type="checkbox" class="checkbox" />';
+	cell1.innerHTML = '<input type="checkbox"/>';
 	cell1.childNodes[0].addEventListener("change", ChangeCheckbox);
 
 	cell2.innerHTML =
-		'<input type="text"class="form-control"placeholder="title here"/><p class="invalid-feedback"></p>';
+		'<input type="text" placeholder="title here"/><p></p>';
 	cell2.childNodes[0].addEventListener("change", ChangeTitle);
 
 	cell3.innerHTML =
-		'<textarea type="text" class="form-control" placeholder="description here"></textarea><p class="invalid-feedback"></p>';
+		'<textarea type="text" placeholder="description here"></textarea><p></p>';
 	cell3.childNodes[0].addEventListener("change", ChangeDescription);
 
 	cell4.innerHTML =
-		'<select class="form-select" aria-label=".form-select-lg example"><option selected value="None">None</option><option value="Low">Low</option><option value="Medium">Medium</option><option value="High">High</option></select>';
+		'<select aria-label=".form-select-lg example"><option selected value="None">None</option><option value="Low">Low</option><option value="Medium">Medium</option><option value="High">High</option></select>';
 	cell4.childNodes[0].addEventListener("change", ChangePriority);
 
 	cell5.innerHTML =
-		'<select class="form-select" aria-label=".form-select-lg example"><option selected value="Not started">Not started</option><option value="In progress">In progress</option><option value="Finished">Finished</option></select>';
+		'<select aria-label=".form-select-lg example"><option selected value="Not started">Not started</option><option value="In progress">In progress</option><option value="Finished">Finished</option></select>';
 	cell5.childNodes[0].addEventListener("change", ChangeStatus);
 
 	cell6.innerHTML =
-		'<button type="button" class="btn btn-secondary">Delete</button>';
+		'<button type="button" class="btn">Delete</button>';
 	cell6.childNodes[0].addEventListener("click", RequestDelete);
 }
 

@@ -1,8 +1,8 @@
 $(document).ready(function () {
-	let overlay = $("#overlay");
+	let menu = $("#mobileNav");
 	let navOpen = document.getElementById("navOpen");
 
 	navOpen.addEventListener("click", () => {
-		overlay.toggleClass("overlayActive");
+		menu.toggleClass("menuActive");
 	});
 });
