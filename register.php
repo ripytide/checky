@@ -9,14 +9,17 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 		<link href="style.css" rel="stylesheet" />
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
 		<title>Checky - Register</title>
 	</head>
 	<body>
 		<script src="sharedScripts.js"></script>
 		<script src="registerScripts.js"></script>
+		<script src="navBar.js"></script>
 
-		<?php require("getNavBar.php"); ?>
+		<?php require("components/navBar.php"); ?>
 
 		<div class="statusBox">
 			<div id="statusLine">
@@ -29,47 +32,37 @@
 			</div>	
 		</div>
 
-		<div>
-			<div>
-				<div class="login-box">
-					<h1>Register</h1>
-					<form onsubmit="Register();return false">
-						<div>
-							<label for="username">username</label>
-							<input
-								id="username"
-								type="username"
-								aria-describedby="emailHelp"
-							/>
-							<p id="userErrorMsg"></p>
-						</div>
-						<div>
-							<label for="password">Password</label>
-							<input
-								id="password"
-								type="password"
-							/>
-							<p id="passErrorMsg"></p>
-							<div>
-								<button
-									type="submit"
-								>
-									Signup
-								</button>
-							</div>
-						</div>
-					</form>
+		<div class="login-box">
+			<h1>Register</h1>
+			<form onsubmit="Register();return false">
+				<div>
+					<label for="username">username</label>
+					<input
+						id="username"
+						type="username"
+						aria-describedby="emailHelp"
+					/>
+					<p id="userErrorMsg"></p>
 				</div>
-			</div>
+				<div>
+					<label for="password">Password</label>
+					<input
+						id="password"
+						type="password"
+					/>
+					<p id="passErrorMsg"></p>
+					<div>
+						<button
+							type="submit"
+						>
+							Signup
+						</button>
+					</div>
+				</div>
+			</form>
 		</div>
 
-		<p id="result"></p>
-
-		<footer>
-			<div>
-				<span>Copyright© 2020, James Forster, All rights reserved</span>
-			</div>
-		</footer>
+		<?php require("components/footer.php"); ?>
 
 	</body>
 </html>

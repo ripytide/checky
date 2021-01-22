@@ -1,9 +1,162 @@
-body {
-	background-color: #b8d8d8;
+* {
+	box-sizing: border-box;
 }
 
-nav {
+body {
+	background-color: #b8d8d8;
+	margin: 0px;
+	font-size: 22px;
+	font-family: "Lato", sans-serif;
+}
+
+button {
+	outline: none;
+	border: none;
+	cursor: pointer;
+}
+
+button:active {
+	outline: unset;
+}
+
+/* Nav Bar stuff START */
+
+header {
 	background-color: #7a9e9f;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 5%;
+}
+
+.home {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	text-decoration: none;
+}
+
+.home * {
+	margin: 0 30px;
+}
+
+.normNav {
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	padding-inline-start: 0px;
+}
+
+.normNav li {
+	margin: 0px 30px;
+}
+
+.normNav li a,
+.mobileNav li a,
+.home a {
+	color: rgba(0, 0, 0, 0.8);
+	transition: color 150ms ease-out;
+	text-decoration: none;
+}
+
+.home a {
+	font-weight: bold;
+}
+
+.normNav li a:hover,
+.mobileNav li a:hover,
+.home a:hover {
+	color: #0f94a0;
+}
+
+.mobileNav {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	list-style: none;
+	width: 100%;
+	height: 100%;
+
+	padding-inline-start: 0px;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+}
+
+.mobileNav li {
+	padding: 25px 20px;
+	width: 100%;
+}
+
+.mobileNav li:nth-of-type(odd) {
+	background-color: #5b888a;
+}
+
+.mobileNav li:nth-of-type(even) {
+	background-color: #759ea0;
+}
+
+.overlay {
+	position: relative;
+	height: 0;
+	width: 100%;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	background-color: rgba(117, 6, 6, 0.5);
+	transition: height 400ms ease-out 0ms;
+}
+
+.overlayActive {
+	height: 0;
+}
+
+@media only screen and (max-width: 768px) {
+	.normNav {
+		display: none;
+	}
+
+	.overlayActive {
+		height: 231px;
+	}
+
+	.btn-hide {
+		display: initial !important;
+	}
+}
+/* Nav Bar stuff END */
+
+.logo {
+	width: 60px;
+	height: 60px;
+}
+
+.btn {
+	padding: 9px 25px;
+	background-color: #5b888a;
+	border-radius: 10px;
+	border: 1px solid #1f4142;
+	background: linear-gradient(to bottom, #5b888a, #3a797a);
+	transition: background 150ms ease-out;
+}
+
+.btn:hover {
+	background: linear-gradient(to bottom, #568185, #568185);
+}
+
+.btn:active {
+	background: linear-gradient(to bottom, #426a6e, #426a6e);
+}
+
+.btn-hide {
+	display: none;
 }
 
 footer {
@@ -95,7 +248,7 @@ footer {
 		to right,
 		#155799,
 		#159957
-	); 
+	);
 	background: linear-gradient(
 		to right,
 		#155799,
