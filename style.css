@@ -127,6 +127,21 @@ header {
 }
 /* Nav Bar stuff END */
 
+/* Footer stuff START */
+footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: #7a9e9f;
+}
+/* Footer stuff END */
 .main {
 	margin: 100px 0px;
 	text-align: center;
@@ -168,13 +183,6 @@ header {
 
 .btn-hide {
 	display: none;
-}
-
-footer {
-	background-color: #7a9e9f;
-	width: 100%;
-	left: 0;
-	bottom: 0;
 }
 
 .login-box {
