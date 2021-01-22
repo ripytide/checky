@@ -45,7 +45,7 @@ header {
 	margin: 0 30px;
 }
 
-.normNav {
+.norm-nav {
 	margin-block-start: 0px;
 	margin-block-end: 0px;
 	list-style: none;
@@ -57,8 +57,8 @@ header {
 	padding-inline-start: 0px;
 }
 
-.normNav li a,
-.mobileNav li a,
+.norm-nav li a,
+.mobile-nav li a,
 .home a {
 	color: rgba(0, 0, 0, 0.8);
 	transition: color 150ms ease-out;
@@ -70,13 +70,13 @@ header {
 	font-weight: bold;
 }
 
-.normNav li a:hover,
-.mobileNav li a:hover,
+.norm-nav li a:hover,
+.mobile-nav li a:hover,
 .home a:hover {
 	color: #0f94a0;
 }
 
-.mobileNav {
+.mobile-nav {
 	position: relative;
 	width: 100%;
 	height: 0;
@@ -98,21 +98,21 @@ header {
 	transition: height 400ms ease-out 0ms;
 }
 
-.mobileNav li {
+.mobile-nav li {
 	padding: 25px 20px;
 	width: 100%;
 }
 
-.mobileNav li:nth-of-type(odd) {
+.mobile-nav li:nth-of-type(odd) {
 	background-color: #5b888a;
 }
 
-.mobileNav li:nth-of-type(even) {
+.mobile-nav li:nth-of-type(even) {
 	background-color: #759ea0;
 }
 
 @media only screen and (max-width: 900px) {
-	.normNav {
+	.norm-nav {
 		display: none;
 	}
 
@@ -128,6 +128,25 @@ header {
 /* Nav Bar stuff END */
 
 .main {
+	margin: 100px 0px;
+	text-align: center;
+}
+
+.link {
+	font-size: 1.5em;
+	color: #1fbec4;
+
+	transition: color 500ms ease;
+}
+
+.link:hover {
+	color: #137c80;
+
+	transition: color 150ms ease-in;
+}
+
+.link:active {
+	color: #14686b;
 }
 
 .btn {

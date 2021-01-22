@@ -22,7 +22,7 @@
 		<div class="main">
 			<h1>Welcome to Checky</h1>
 			<p>Here to make a checklist?<br />Great, click below.</p>
-			<a href="createChecklist">
+			<a class="link" href="/createChecklist">
 				Create a checklist
 			</a>
 		</div>
