@@ -79,6 +79,7 @@ header {
 .mobileNav {
 	position: relative;
 	width: 100%;
+	height: 0;
 	z-index: 1;
 	left: 0;
 	top: 0;
@@ -90,14 +91,11 @@ header {
 	justify-content: space-evenly;
 	list-style: none;
 
-	transform: scaleY(0);
-	transform-origin: top;
-
 	padding-inline-start: 0px;
 	margin-block-start: 0px;
 	margin-block-end: 0px;
 
-	transition: transform 400ms ease-out 0ms;
+	transition: height 400ms ease-out 0ms;
 }
 
 .mobileNav li {
@@ -113,9 +111,6 @@ header {
 	background-color: #759ea0;
 }
 
-.menuActive {
-}
-
 @media only screen and (max-width: 900px) {
 	.normNav {
 		display: none;
@@ -124,10 +119,6 @@ header {
 	.btn-hide {
 		display: initial !important;
 	}
-
-	.menuActive {
-		transform: scaleY(1);
-	}
 }
 
 .logo {
@@ -135,6 +126,9 @@ header {
 	height: 60px;
 }
 /* Nav Bar stuff END */
+
+.main {
+}
 
 .btn {
 	padding: 9px 25px;

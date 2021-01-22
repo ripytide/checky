@@ -19,7 +19,7 @@
 
 		<?php require("components/navBar.php"); ?>
 
-		<div>
+		<div class="main">
 			<h1>Welcome to Checky</h1>
 			<p>Here to make a checklist?<br />Great, click below.</p>
 			<a href="createChecklist">
