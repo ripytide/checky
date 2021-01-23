@@ -1,5 +1,10 @@
 <header>
-	<div class="home"><img class="logo" src="/favicon.ico" href="/index"><a href="/index">Checky</a></div>
+	<div class="home">
+		<a href="/index">
+		<img class="logo" src="/favicon.ico" href="/index">
+		</a>
+		<a href="/index">Checky</a>
+	</div>
 
 	<ul class="norm-nav">
 		<?php require("getNavList.php"); ?>
