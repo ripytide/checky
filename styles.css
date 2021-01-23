@@ -143,7 +143,7 @@ footer {
 }
 /* Footer stuff END */
 .main {
-	margin: 100px 0px;
+	margin: 100px 50px;
 	text-align: center;
 }
 
@@ -185,34 +185,75 @@ footer {
 	display: none;
 }
 
-.login-box {
-	width: 500px;
+.form-box {
+	text-align: start;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 600px;
 	background-color: #c9d99d;
+	border: 3px solid #1f4142;
+	border-radius: 5px;
+
+	padding: 0 100px;
 }
 
-.auth-box {
-	margin-top: 120px;
-	width: 500px;
-	background-color: #4b89da;
+.form-box h1 {
+	margin: 30px 0;
+	text-decoration: underline;
 }
 
-.checkbox {
-	margin-top: 6px;
-	width: 25px;
-	height: 25px;
+.form-box label {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 }
 
-.no-padding {
-	padding: 0px;
+.form-box label h2 {
+	margin: 0 5px;
+}
+
+.form-box label i {
+	margin-top: 3px;
+}
+
+.form-box input {
+	height: 35px;
+	width: 100%;
+	font-size: 20px;
+	margin-top: 9px;
+	border: 2px solid #000000;
+	border-radius: 3px;
+
+	background-color: #eeeeee;
+}
+
+.form-box .btn {
+	margin: 20px 0;
+	border-width: 3px;
+	background: none;
+	background-color: #11a5ca;
+	font-size: 1em;
+}
+
+.form-box .form-row {
+	display: flex;
+	align-items: center;
+	margin: 8px 0px;
+	text-align: left;
+}
+
+.form-box .error-msg {
+	color: red;
+}
+
+.button-center {
+	text-align: center;
 }
 
 .hide {
 	display: none;
-}
-
-.managementBox {
-	margin-top: 100px;
-	max-width: 300px;
 }
 
 .statusBox {
@@ -230,12 +271,6 @@ footer {
 
 	background-color: rgb(40, 128, 59);
 	border-radius: 6px;
-}
-
-.flexCenter {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .successLine {
@@ -260,9 +295,10 @@ footer {
 	margin-top: 3px;
 }
 
-.form-control[readonly] {
+/* .form-control[readonly] {
 	background-color: #b4b4b4;
-}
+} */
+
 /* background: -webkit-linear-gradient(
 		to right,
 		#155799,
