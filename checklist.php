@@ -15,174 +15,150 @@
 		<!-- Hand made style sheet -->
 		<link href="../styles.css" rel="stylesheet" />
 
-		<!-- Lato font -->
-		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-
 		<title>Checky - Checklist</title>
 	</head>
 	<body>
 		<script src="../sharedScripts.js"></script>
 		<script src="../checklistScripts.js"></script>
 		<script src="../settingsScripts.js"></script>
-		<script src="navBar.js"></script>
+		<script src="../navBar.js"></script>
 
-		<?php require("components/navBar.php"); ?>
+		<?php require("../components/navBar.php"); ?>
 
-		<div class="statusBox">
-			<div id="statusLine">
-				<i class="fas fa-check-circle icon fa-2x" id="successIcon"></i>
-				<i class="far fa-times-circle icon fa-2x" id="failIcon"></i>
-				<h1 id="statusMsg"></h1>
-			</div>
-			<div id="errorMsgLine">
-				<p id="errorMsg"></p>
-			</div>	
+		<?php require("../components/status-box.html"); ?>
+
+		<div
+			id="authenticationBox"
+			class="auth-box hide"
+		>
+			<h3>
+				Please enter the checklist Password for access to this checklist
+			</h3>
+			<form onsubmit="ReGrabChecklist();return false">
+				<div>
+					<input
+						id="authPassword"
+						type="password"
+					/>
+					<p id="authPassErrorMsg"></p>
+					<div>
+						<button
+							type="submit"
+						>
+							Authenticate
+						</button>
+					</div>
+				</div>
+			</form>
 		</div>
 
-			<div id="main">
-				<div
-					id="authenticationBox"
-					class="auth-box hide"
-				>
-					<h3>
-						Please enter the checklist Password for access to this checklist
-					</h3>
-					<form onsubmit="ReGrabChecklist();return false">
-						<div>
-							<input
-								id="authPassword"
-								type="password"
-							/>
-							<p id="authPassErrorMsg"></p>
-							<div>
-								<button
-									type="submit"
-								>
-									Authenticate
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
+		<div class="ui-checklist-main">
+			<div id="taskListDiv" class="hide checklist-container">
 
-				<div id="taskListDiv" class="hide">
+				<input id="checklistTitle" class="title" contenteditable="true" onchange="ChangeChecklistTitle()"></input>
 
-					<input id="checklistTitle" placeholder="checklist title" contenteditable="true" onchange="ChangeChecklistTitle()">
+				<table id="taskList" class="table checklist-table">
+					<thead>
+						<tr>
+							<th scope="col" onclick='SortChecklist("checkbox")'></th>
+							<th scope="col" onclick='SortChecklist("title")'>Title</th>
+							<th scope="col" onclick='SortChecklist("description")'>
+								description
+							</th>
+							<th scope="col" onclick='SortChecklist("priority")'>
+								priority
+							</th>
+							<th scope="col" onclick='SortChecklist("status")'>status</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
 
-					<table
-						id="taskList"
-					>
-						<thead>
-							<tr>
-								<th scope="col" onclick='SortChecklist("checkbox")'></th>
-								<th scope="col" onclick='SortChecklist("title")'>Title</th>
-								<th scope="col" onclick='SortChecklist("description")'>
-									description
-								</th>
-								<th scope="col" onclick='SortChecklist("priority")'>
-									priority
-								</th>
-								<th scope="col" onclick='SortChecklist("status")'>status</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
-
-					<button onclick="NewTask()">
-						New task
-					</button>
-
-				</div>
-				<div class="managementBox">
-					<h1>Management</h1>
-
-					<table>
-						<tbody id="settingsList">
-							<tr id="setPasswordRow" class="hide">
-								<td><h2>Set Password</h2></td>
-								<td>
-									<input
-										id="setPassword"
-										type="password"
-									/>
-									<p id="setPassErrorMsg"></p>
-									<button
-										onclick="RequestSetPassword()"
-									>
-										Set
-									</button>
-								</td>
-							</tr>
-							<tr id="accessRow" class="hide">
-								<td><h2>Access Settings</h2></td>
-								<td>
-									<select
-										id="access"
-										aria-label=".form-select-lg example"
-										onchange="RequestAccessUpdate()"
-									>
-										<option selected value="Public editable">
-											Public editable
-										</option>
-										<option value="Public not editable">
-											Public not editable
-										</option>
-										<option value="Private">Private</option>
-									</select>
-								</td>
-							</tr>
-							<tr id="currentPasswordRow" class="hide">
-								<td>
-									<h2>Current Password</h2>
-								</td>
-								<td>
-									<input
-										id="currentPassword"
-										type="password"
-										onchange="RemovePasswordError()"
-									/>
-									<p id="currentPassErrorMsg"></p>
-								</td>
-							</tr>
-							<tr id="newPasswordRow" class="hide">
-								<td><h2>New Password</h2></td>
-								<td>
-									<input
-										id="newPassword"
-										type="password"
-									/>
-									<p id="newPassErrorMsg"></p>
-									<button
-										onclick="RequestChangePassword()"
-									>
-										Change
-									</button>
-								</td>
-							</tr>
-							<tr id="removePasswordRow" class="hide">
-								<td><h2>Remove Password</h2></td>
-								<td>
-									<button
-										type="button"
-										onclick="RequestRemovePassword()"
-									>
-										Remove
-									</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-
-					<button id="editButton" type="button" class="hide" onclick="RequestReadAccess()">
-						Get edit permissions
-					</button>
-
-				</div>
+				<button class="btn new-task" onclick="NewTask()">New task</button>
 			</div>
 
-			<?php require("components/footer.html"); ?>
+
+			<div class="management-container">
+				<table class="table management-table">
+					<thead>
+						<tr>
+							<th>Management Settings</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="settingsList">
+						<tr id="setPasswordRow" class="hide">
+							<td>Set Password</td>
+							<td>
+								<input
+									id="setPassword"
+									type="password"
+								/>
+								<p id="setPassErrorMsg"></p>
+								<button class="btn" onclick="RequestSetPassword()">Set</button>
+							</td>
+						</tr>
+						<tr id="accessRow" class="hide">
+							<td>Access Settings</td>
+							<td>
+								<select
+									id="access"
+									aria-label=".form-select-lg example"
+									onchange="RequestAccessUpdate()"
+								>
+									<option selected value="Public editable">
+										Public editable
+									</option>
+									<option value="Public not editable">
+										Public not editable
+									</option>
+									<option value="Private">Private</option>
+								</select>
+							</td>
+						</tr>
+						<tr id="currentPasswordRow" class="hide">
+							<td>Current Password</td>
+							<td>
+								<input
+									id="currentPassword"
+									type="password"
+									onchange="RemovePasswordError()"
+								/>
+								<p id="currentPassErrorMsg"></p>
+							</td>
+						</tr>
+						<tr id="newPasswordRow" class="hide">
+							<td>New Password</td>
+							<td>
+								<input
+									id="newPassword"
+									type="password"
+								/>
+								<p id="newPassErrorMsg"></p>
+								<button class="btn"onclick="RequestChangePassword()">Change</button>
+							</td>
+						</tr>
+						<tr id="removePasswordRow" class="hide">
+							<td>Remove Password</td>
+							<td>
+								<button class="btn" type="button" onclick="RequestRemovePassword()">Remove</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<button id="editButton" type="button" class="hide btn" onclick="RequestReadAccess()">
+					Get edit permissions
+				</button>
+
+			</div>
+		</div>
+
+		<button class="btn" onclick='HandleStatus({status: "success"})'>success</button>
+		<button class="btn" onclick='HandleStatus({status: "fail"})'>fail</button>
+
+		<?php require("../components/footer.html"); ?>
 
 	</body>
 </html>

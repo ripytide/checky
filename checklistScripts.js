@@ -171,8 +171,7 @@ function AddTaskCells(row) {
 	cell1.innerHTML = '<input type="checkbox"/>';
 	cell1.childNodes[0].addEventListener("change", ChangeCheckbox);
 
-	cell2.innerHTML =
-		'<input type="text" placeholder="title here"/><p></p>';
+	cell2.innerHTML = '<input type="text" placeholder="title here"/><p></p>';
 	cell2.childNodes[0].addEventListener("change", ChangeTitle);
 
 	cell3.innerHTML =
@@ -187,8 +186,7 @@ function AddTaskCells(row) {
 		'<select aria-label=".form-select-lg example"><option selected value="Not started">Not started</option><option value="In progress">In progress</option><option value="Finished">Finished</option></select>';
 	cell5.childNodes[0].addEventListener("change", ChangeStatus);
 
-	cell6.innerHTML =
-		'<button type="button" class="btn">Delete</button>';
+	cell6.innerHTML = '<button type="button" class="btn">Delete</button>';
 	cell6.childNodes[0].addEventListener("click", RequestDelete);
 }
 

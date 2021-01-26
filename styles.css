@@ -8,7 +8,7 @@ body {
 	background-color: #b8d8d8;
 	margin: 0px;
 	font-size: 22px;
-	font-family: "Lato", sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 button {
@@ -248,17 +248,128 @@ footer {
 	color: red;
 }
 
-.button-center {
-	text-align: center;
-}
-
 .hide {
 	display: none;
 }
 
-.statusBox {
-	z-index: -1;
+.ui-checklist-main {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+}
 
+.management-table {
+	margin: 0 20px;
+}
+
+.management-table .btn {
+	margin: 5px 5px;
+}
+
+.checklist-table {
+	margin: 0 20px;
+	max-width: 100%;
+	width: 800px;
+}
+
+.title {
+	background: none;
+	font-size: 1.5em;
+	border: none;
+	border-bottom: 2px solid #000000;
+}
+
+.table {
+	border-collapse: collapse;
+	border-radius: 8px 8px 0 0;
+	overflow: hidden;
+	min-width: auto;
+}
+
+.table thead {
+	background-color: #2f9ea1;
+}
+
+.table thead tr {
+	height: 50px;
+	border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.table tbody tr {
+	border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.table tbody tr:last-of-type {
+	border-bottom: 3px solid #11a5ca;
+}
+
+.table tbody tr:nth-of-type(odd) {
+	background-color: #9c9c9c;
+}
+
+.table tbody tr:nth-of-type(even) {
+	background-color: #818181;
+}
+
+.table th {
+	text-align: left;
+	font-size: 1.5em;
+}
+
+.table td {
+	text-align: left;
+	font-size: 1.25em;
+}
+
+.table td input,
+.table td textarea,
+.table td select {
+	display: block;
+	height: 34px;
+	font-size: 22px;
+	border: 1px solid #000000;
+	border-radius: 3px;
+	background-color: #d1e8ee;
+	margin: 5px 5px;
+}
+
+.table td select {
+	border-radius: 5px;
+}
+
+.table td textarea {
+	min-height: 34px;
+	max-height: 400px;
+	min-width: 230px;
+	max-width: 400px;
+}
+
+.table td input[type="checkbox"] {
+	outline: 3px solid black;
+	overflow: hidden;
+	height: 40px;
+	width: 40px;
+}
+
+.table p {
+	margin-block-start: 0;
+	margin-block-end: 0;
+}
+
+.new-task {
+	margin: 20px 0;
+}
+
+.box {
+	width: 100px;
+	height: 100px;
+	background-color: yellow;
+}
+
+.status-box {
 	position: fixed;
 
 	top: 0;
@@ -271,6 +382,13 @@ footer {
 
 	background-color: rgb(40, 128, 59);
 	border-radius: 6px;
+
+	transition: top 1000ms ease, opacity 1000ms ease;
+}
+
+.status-box-active {
+	opacity: 1;
+	top: 100px;
 }
 
 .successLine {
@@ -297,7 +415,7 @@ footer {
 
 /* .form-control[readonly] {
 	background-color: #b4b4b4;
-} */
+}
 
 /* background: -webkit-linear-gradient(
 		to right,

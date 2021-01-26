@@ -1,34 +1,29 @@
-var statusDisplayed = false;
+let statusDisplayed = false;
 function HandleStatus(json) {
 	if (!statusDisplayed) {
 		statusDisplayed = true;
 
-		$("#statusMsg").text(json["status"]);
-
 		if (json["status"] === "success") {
+			$("#statusMsg").text(json["status"]);
+
 			//switch icons
 			$("#failIcon").hide();
 			$("#successIcon").show();
+
 			//remove error msg
 			$("#errorMsg").text("");
-
-			//toggle css as their is no error msg
-			$("#statusLine").removeClass("failLine");
-			$("#statusLine").addClass("successLine");
 
 			//change color to green
 			$("#statusBox").css("backgroundColor", "green");
 		} else if (json["status"] === "fail") {
-			//switch icone
+			$("#statusMsg").text(json["status"]);
+
+			//switch icons
 			$("#successIcon").hide();
 			$("#failIcon").show();
 
 			//add error msg
 			$("#errorMsg").text(json["errorMsg"]);
-
-			//toggle css for space for error msg
-			$("#statusLine").removeClass("successLine");
-			$("#statusLine").addClass("failLine");
 
 			//change color to red
 			$("#statusBox").css("backgroundColor", "red");
@@ -36,21 +31,14 @@ function HandleStatus(json) {
 			console.log("incorrect status given");
 		}
 
-		var status = $("#statusBox");
+		let status = $("#statusBox");
 
-		//reset status div
-		status.css({ top: "0px", opacity: 0 });
+		status.addClass("status-box-active");
 
-		status.show();
-		status.animate({
-			top: "75px",
-			opacity: 1,
-		});
-
-		//wait 1.8s then make the notification fade out
-		setTimeout(() => {
-			status.fadeOut();
-			statusDisplayed = false;
-		}, 1800);
+		// //wait 1.8s then make the notification fade out
+		// setTimeout(() => {
+		// 	status.removeClass("status-box-active");
+		// 	setTimeout(() => { statusDisplayed = false; }, 1000);
+		// }, 2000);
 	}
 }

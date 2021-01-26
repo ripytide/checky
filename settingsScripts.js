@@ -131,11 +131,8 @@ function RemovePasswordReturned(data) {
 
 function RemovePasswordError() {
 	let currentPassErrorMsg = document.getElementById("currentPassErrorMsg");
-	let currentPass = document.getElementById("currentPassword");
 
 	currentPassErrorMsg.innerHTML = "";
-
-	currentPass.removeClass("is-invalid");
 }
 
 function CurrentPasswordError(errorMsg) {
@@ -144,7 +141,6 @@ function CurrentPasswordError(errorMsg) {
 
 	if (currentPass) {
 		currentPassErrorMsg.innerHTML = errorMsg;
-		currentPass.classList.add("is-invalid");
 	}
 }
 
