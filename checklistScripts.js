@@ -171,19 +171,19 @@ function AddTaskCells(row) {
 	cell1.innerHTML = '<input type="checkbox"/>';
 	cell1.childNodes[0].addEventListener("change", ChangeCheckbox);
 
-	cell2.innerHTML = '<input type="text" placeholder="title here"/><p></p>';
+	cell2.innerHTML = '<input type="text" placeholder="title here"/><p class="error-msg"></p>';
 	cell2.childNodes[0].addEventListener("change", ChangeTitle);
 
 	cell3.innerHTML =
-		'<textarea type="text" placeholder="description here"></textarea><p></p>';
+		'<textarea type="text" placeholder="description here"></textarea><p class="error-msg"></p>';
 	cell3.childNodes[0].addEventListener("change", ChangeDescription);
 
 	cell4.innerHTML =
-		'<select aria-label=".form-select-lg example"><option selected value="None">None</option><option value="Low">Low</option><option value="Medium">Medium</option><option value="High">High</option></select>';
+		'<select><option selected value="None">None</option><option value="Low">Low</option><option value="Medium">Medium</option><option value="High">High</option></select>';
 	cell4.childNodes[0].addEventListener("change", ChangePriority);
 
 	cell5.innerHTML =
-		'<select aria-label=".form-select-lg example"><option selected value="Not started">Not started</option><option value="In progress">In progress</option><option value="Finished">Finished</option></select>';
+		'<select><option selected value="Not started">Not started</option><option value="In progress">In progress</option><option value="Finished">Finished</option></select>';
 	cell5.childNodes[0].addEventListener("change", ChangeStatus);
 
 	cell6.innerHTML = '<button type="button" class="btn">Delete</button>';
@@ -342,7 +342,7 @@ function UpdateChecklistReturned(data) {
 			input.classList.remove("is-invalid");
 			errorMsg.innerText = "";
 		}
-	} else if (!json["userChecklist"]) {
+	} else if (!json["userChecklist"] && json["status"] ==! "success") {
 		CurrentPasswordError(json["errorMsg"]);
 	}
 }

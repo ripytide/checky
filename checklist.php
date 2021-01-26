@@ -55,7 +55,7 @@
 		<div class="ui-checklist-main">
 			<div id="taskListDiv" class="hide checklist-container">
 
-				<input id="checklistTitle" class="title" contenteditable="true" onchange="ChangeChecklistTitle()"></input>
+				<input id="checklistTitle" class="title" contenteditable="true" onchange="ChangeChecklistTitle()" placeholder="title"></input>
 
 				<table id="taskList" class="table checklist-table">
 					<thead>
@@ -63,12 +63,12 @@
 							<th scope="col" onclick='SortChecklist("checkbox")'></th>
 							<th scope="col" onclick='SortChecklist("title")'>Title</th>
 							<th scope="col" onclick='SortChecklist("description")'>
-								description
+								Description
 							</th>
 							<th scope="col" onclick='SortChecklist("priority")'>
-								priority
+								Priority
 							</th>
-							<th scope="col" onclick='SortChecklist("status")'>status</th>
+							<th scope="col" onclick='SortChecklist("status")'>Status</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
@@ -95,7 +95,7 @@
 									id="setPassword"
 									type="password"
 								/>
-								<p id="setPassErrorMsg"></p>
+								<p id="setPassErrorMsg" class="error-msg"></p>
 								<button class="btn" onclick="RequestSetPassword()">Set</button>
 							</td>
 						</tr>
@@ -125,7 +125,7 @@
 									type="password"
 									onchange="RemovePasswordError()"
 								/>
-								<p id="currentPassErrorMsg"></p>
+								<p id="currentPassErrorMsg" class="error-msg"></p>
 							</td>
 						</tr>
 						<tr id="newPasswordRow" class="hide">
@@ -135,7 +135,7 @@
 									id="newPassword"
 									type="password"
 								/>
-								<p id="newPassErrorMsg"></p>
+								<p id="newPassErrorMsg" class="error-msg"></p>
 								<button class="btn"onclick="RequestChangePassword()">Change</button>
 							</td>
 						</tr>
@@ -154,9 +154,6 @@
 
 			</div>
 		</div>
-
-		<button class="btn" onclick='HandleStatus({status: "success"})'>success</button>
-		<button class="btn" onclick='HandleStatus({status: "fail"})'>fail</button>
 
 		<?php require("../components/footer.html"); ?>
 

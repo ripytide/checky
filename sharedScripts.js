@@ -26,19 +26,23 @@ function HandleStatus(json) {
 			$("#errorMsg").text(json["errorMsg"]);
 
 			//change color to red
-			$("#statusBox").css("backgroundColor", "red");
+			$("#statusBox").css("backgroundColor", "#aa0000");
 		} else {
 			console.log("incorrect status given");
 		}
 
 		let status = $("#statusBox");
 
+		status.show();
 		status.addClass("status-box-active");
 
 		//wait 2s then make the notification fade out
 		setTimeout(() => {
 			status.removeClass("status-box-active");
-			setTimeout(() => { statusDisplayed = false; }, 1000);
+			setTimeout(() => {
+				status.hide();
+				statusDisplayed = false;
+			}, 1000);
 		}, 2000);
 	}
 }

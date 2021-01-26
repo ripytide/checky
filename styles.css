@@ -70,6 +70,10 @@ header {
 	font-weight: bold;
 }
 
+.home a img {
+	vertical-align: middle;
+}
+
 .norm-nav li a:hover,
 .mobile-nav li a:hover,
 .home a:hover {
@@ -256,26 +260,40 @@ footer {
 	min-height: 60vh;
 
 	display: flex;
-	flex: 1;
 	flex-direction: row;
-	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
 	text-align: center;
 }
 
+.checklist-container {
+	width: 70%;
+	padding: 0px 30px;
+}
+
+.management-container {
+	width: 30%;
+	padding: 0px 30px;
+}
+
 .management-table {
-	margin: 0 20px;
+	width: 100%;
 }
 
 .management-table .btn {
 	margin: 5px 5px;
 }
 
+.management-table input {
+	width: 203px;
+}
+
+.management-table thead th {
+	text-align: center;
+}
+
 .checklist-table {
-	margin: 0 20px;
-	max-width: 100%;
-	width: 800px;
+	width: 100%;
 }
 
 .title {
@@ -379,6 +397,8 @@ footer {
 	top: 0;
 	right: 50px;
 
+	padding: 10px 20px;
+
 	width: auto;
 	height: auto;
 
@@ -393,10 +413,6 @@ footer {
 .status-box-active {
 	opacity: 1;
 	top: 100px;
-}
-
-.status-box .status-line {
-	margin: 10px 20px;
 }
 
 .status-line h1 {
@@ -425,8 +441,14 @@ footer {
 		transform: rotate(360deg);
 	}
 }
-/* .form-control[readonly] {
+
+.table input[readonly],
+.table textarea[readonly] {
 	background-color: #b4b4b4;
+}
+
+.is-invalid {
+	border-color: red !important;
 }
 
 /* background: -webkit-linear-gradient(

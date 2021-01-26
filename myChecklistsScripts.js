@@ -57,14 +57,14 @@ function AddChecklistCells(row, checklistID) {
 	let cell3 = row.insertCell(2);
 
 	cell1.innerHTML =
-		'<input type="text"class="form-control light-grey"placeholder="title here"/><p class="invalid-feedback"></p>';
+		'<input type="text" placeholder="title here"/><p class="error-msg"></p>';
 	cell1.childNodes[0].addEventListener("change", ChangeTitle);
 
-	cell2.innerHTML = '<a class="btn btn-secondary">Visit</a>';
+	cell2.innerHTML = '<a class="btn">Visit</a>';
 	cell2.childNodes[0].href = "checklists/".concat(checklistID);
 
 	cell3.innerHTML =
-		'<button type="button" class="btn btn-secondary">Delete</button>';
+		'<button type="button" class="btn">Delete</button>';
 	cell3.childNodes[0].addEventListener("click", RequestDelete);
 }
 
