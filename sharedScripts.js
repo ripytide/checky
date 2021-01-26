@@ -35,10 +35,10 @@ function HandleStatus(json) {
 
 		status.addClass("status-box-active");
 
-		// //wait 1.8s then make the notification fade out
-		// setTimeout(() => {
-		// 	status.removeClass("status-box-active");
-		// 	setTimeout(() => { statusDisplayed = false; }, 1000);
-		// }, 2000);
+		//wait 2s then make the notification fade out
+		setTimeout(() => {
+			status.removeClass("status-box-active");
+			setTimeout(() => { statusDisplayed = false; }, 1000);
+		}, 2000);
 	}
 }

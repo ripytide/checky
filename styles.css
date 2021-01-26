@@ -244,7 +244,7 @@ footer {
 	text-align: left;
 }
 
-.form-box .error-msg {
+.error-msg {
 	color: red;
 }
 
@@ -253,7 +253,10 @@ footer {
 }
 
 .ui-checklist-main {
+	min-height: 60vh;
+
 	display: flex;
+	flex: 1;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -322,6 +325,7 @@ footer {
 .table td {
 	text-align: left;
 	font-size: 1.25em;
+	padding: 5px 10px;
 }
 
 .table td input,
@@ -333,7 +337,7 @@ footer {
 	border: 1px solid #000000;
 	border-radius: 3px;
 	background-color: #d1e8ee;
-	margin: 5px 5px;
+	margin: 0 !important;
 }
 
 .table td select {
@@ -391,28 +395,36 @@ footer {
 	top: 100px;
 }
 
-.successLine {
-	margin-top: 12px;
-	margin-left: 20px;
-	margin-right: 20px;
+.status-box .status-line {
+	margin: 10px 20px;
 }
 
-.failLine {
-	margin-top: 15px;
-	height: 40px;
-	margin-left: 20px;
-	margin-right: 20px;
+.status-line h1 {
+	display: inline;
 }
 
-#errorMsg {
-	margin-left: 20px;
-	margin-right: 20px;
+.status-box .error-msg {
+	margin: 0;
 }
 
-#successIcon {
-	margin-top: 3px;
+.status-icon {
+	margin-right: 5px;
+	font-size: 33px;
+
+	animation-name: spin;
+	animation-duration: 1700ms;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
 /* .form-control[readonly] {
 	background-color: #b4b4b4;
 }

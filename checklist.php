@@ -79,7 +79,7 @@
 			</div>
 
 
-			<div class="management-container">
+			<div id="managementBox" class="management-container hide">
 				<table class="table management-table">
 					<thead>
 						<tr>

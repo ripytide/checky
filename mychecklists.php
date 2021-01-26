@@ -23,16 +23,7 @@
 
 		<?php require("components/navBar.php"); ?>
 
-		<div class="statusBox">
-			<div id="statusLine">
-				<i class="fas fa-check-circle icon fa-2x" id="successIcon"></i>
-				<i class="far fa-times-circle icon fa-2x" id="failIcon"></i>
-				<h1 id="statusMsg"></h1>
-			</div>
-			<div id="errorMsgLine">
-				<p id="errorMsg"></p>
-			</div>	
-		</div>
+		<?php require("components/status-box.html"); ?>
 		
 		<div class="taskList">
 			<table
