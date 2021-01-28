@@ -1,5 +1,4 @@
 <?php
-session_start();
 $loggedIn = isset($_SESSION["loggedin"]) && ($_SESSION["loggedin"] === true);
 ?>
 <?php if ($loggedIn): ?>
