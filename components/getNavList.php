@@ -6,7 +6,7 @@ $loggedIn = isset($_SESSION["loggedin"]) && ($_SESSION["loggedin"] === true);
    <a href="/mychecklists">My Checklists</a>
 </li>
 <li>
-   <a href="/mychecklists"><?php echo($_SESSION["username"]);?></a>
+   <a href="/mychecklists"><?php echo(htmlspecialchars($_SESSION["username"]));?></a>
 </li>
 <li>
    <a href="/logout">Logout</a>
