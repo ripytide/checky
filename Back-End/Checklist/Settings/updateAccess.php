@@ -5,7 +5,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     //get data from post
 	$checklistID = $_POST["checklistID"];
-    $column = $_POST["column"];
     $newValue = $_POST["newValue"];
     $givenPassword = $_POST["password"];
 
@@ -21,23 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     
     if ((($givenPassword === $actualPassword) and ($actualPassword !== null)) or ($loggedin and $username === $checklistUsername)){
-        if (in_array($column, array("access"))){
-            Query("UPDATE checklist SET $column = ? WHERE checklistID = ?", "ss", $newValue, $checklistID);
 
-            $output["status"] = "success";
-            $output["column"] = $column;
-            $output["access"] = $newValue;
-        } else{
-            $output["status"] = "fail";
-            $output["column"] = $column;
-        }
+        Query("UPDATE checklist SET access = ? WHERE checklistID = ?", "ss", $newValue, $checklistID);
+
+        $output["status"] = "success";
+
     } else if ($checklistUsername){
         $output["status"] = "fail";
-        $output["column"] = $column;
-        $output["errorMsg"] = "You cannot change this as this is not you checklist";
+        $output["errorMsg"] = "You cannot change this as this is not your checklist";
     } else{
         $output["status"] = "fail";
-        $output["column"] = $column;
         $output["currentPassErrorMsg"] = "This password is incorrect";
     }
     echo(json_encode($output));

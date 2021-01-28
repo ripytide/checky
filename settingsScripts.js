@@ -4,14 +4,13 @@ function RequestAccessUpdate() {
 	let newValue = $("#access").val();
 
 	let dataOutwards = {
-		column: "access",
 		newValue,
 		checklistID: GetChecklistID(),
 		password: GetPassword(),
 	};
 
 	$.post(
-		"../../Back-End/Checklist/Settings/updateSettings.php",
+		"../../Back-End/Checklist/Settings/updateAccess.php",
 		dataOutwards,
 		UpdateAccessReturned
 	);
