@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         Query("DELETE FROM checklist WHERE checklistID = ?", "s", $checklistID);
 
-        unlink("../../Front-Facing/checklists/" . $checklistID . ".php");
+        unlink("../../checklists/" . $checklistID . ".php");
 
         $output["status"] = "success";
         $output["checklistID"] = $checklistID;
