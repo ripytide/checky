@@ -60,7 +60,7 @@ function AddChecklistCells(row, checklistID) {
 		'<input type="text" placeholder="title here"/><p class="error-msg"></p>';
 	cell1.childNodes[0].addEventListener("change", ChangeTitle);
 
-	cell2.innerHTML = '<a class="btn">Visit</a>';
+	cell2.innerHTML = '<a class="btn link">Visit</a>';
 	cell2.childNodes[0].href = "checklists/".concat(checklistID);
 
 	cell3.innerHTML =

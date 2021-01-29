@@ -25,23 +25,23 @@
 
 		<?php require("components/status-box.html"); ?>
 		
-		<div class="taskList">
-			<table
-				id="checklistList"
-			>
-				<thead>
-					<tr>
-						<th scope="col">Title</th>
-						<th scope="col"></th>
-						<th scope="col"></th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+		<div class="flex-center">
+			<div>
+				<table id="checklistList" class="table">
+					<thead>
+						<tr>
+							<th scope="col">Title</th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
 
-			<button onclick="NewChecklist()">
-				New checklist
-			</button>
+				<button onclick="NewChecklist()" class="btn">
+					New checklist
+				</button>
+			</div>
 		</div>
 
 		<?php require("components/footer.html"); ?>

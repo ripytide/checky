@@ -29,25 +29,28 @@
 
 		<div
 			id="authenticationBox"
-			class="auth-box hide"
+			class="form-box hide"
 		>
 			<h3>
 				Please enter the checklist Password for access to this checklist
 			</h3>
 			<form onsubmit="ReGrabChecklist();return false">
-				<div>
+				<div class="form-row">
+					<label for="authPassword"><i class="fas fa-lock"></i><h2>Password:</h2></label>
 					<input
 						id="authPassword"
 						type="password"
 					/>
-					<p id="authPassErrorMsg"></p>
-					<div>
-						<button
-							type="submit"
-						>
-							Authenticate
-						</button>
-					</div>
+				</div>
+				<p id="authPassErrorMsg" class="error-msg"></p>
+				<div class="form-row form-row-center">
+					<button
+						type="submit"
+						class="btn"
+					>
+						Authenticate
+					</button>
+				</div>
 				</div>
 			</form>
 		</div>
