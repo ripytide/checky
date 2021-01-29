@@ -55,9 +55,11 @@
 						<span id="passErrorMsg" class="error-msg"></span>
 					</div>
 
-					<div class="button-center">
+					<div class="form-row form-row-center">
 					<button type="submit" class="btn">Login</button>
 					</div>
+
+					<div class="form-row form-row-center"><p class="sign-up">Not a user yet? <a href="/register" class="link">Sign up.</a></p></div>
 
 				</form>
 			</div>

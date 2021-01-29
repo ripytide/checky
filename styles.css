@@ -200,7 +200,7 @@ footer {
 	border: 3px solid #1f4142;
 	border-radius: 5px;
 
-	padding: 0 100px;
+	padding: 0 100px 5px 100px;
 }
 
 .form-box h1 {
@@ -234,7 +234,7 @@ footer {
 }
 
 .form-box .btn {
-	margin: 20px 0;
+	margin: 10px 0 5px 0;
 	border-width: 3px;
 	background: none;
 	background-color: #11a5ca;
@@ -246,6 +246,18 @@ footer {
 	align-items: center;
 	margin: 8px 0px;
 	text-align: left;
+}
+
+.form-box .form-row-center {
+	justify-content: center;
+}
+
+.form-box .form-row .sign-up {
+	margin: 0;
+}
+
+.form-box a {
+	font-size: 1em;
 }
 
 .error-msg {
