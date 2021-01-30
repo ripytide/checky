@@ -17,15 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $access = GetAccess($checklistID);
-    $actualPassword = GetPassword($checklistID);
+    $hash = GetHash($checklistID);
     $checklistUsername = GetUsername($checklistID);
 
     $idArray = GetUniqueTaskID(4, "task");
 
-    if ($access === "Public editable" or (($givenPassword === $actualPassword) and ($actualPassword !== null)) or ($loggedin and $username === $checklistUsername)){
+    if ($access === "Public editable" or ((password_verify($givenPassword, $hash)) and ($hash)) or ($loggedin and $username === $checklistUsername)){
         if ($idArray["status"] === "unique"){
 
-            Query('INSERT INTO task VALUES (?, ?, NULL, NULL, "None", "Not started", 0)', "ss", $idArray["ID"], $checklistID);
+            Query('INSERT INTO tasks VALUES (?, ?, NULL, NULL, "None", "Not started", 0)', "ss", $idArray["ID"], $checklistID);
 
             $output["status"] = "success";
             $output["taskID"] = $idArray["ID"];
@@ -57,7 +57,7 @@ function GetUniqueTaskID($length){
         $string = GenerateString($length);
 
         //get the Result
-        $result = Query("SELECT taskID FROM task WHERE taskID = ?", "s", $string);
+        $result = Query("SELECT taskID FROM tasks WHERE taskID = ?", "s", $string);
 
         //if unique end loop
         if ($result->num_rows === 0){

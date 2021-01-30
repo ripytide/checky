@@ -18,15 +18,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     //get key varibles from checklist database
     $access = GetAccess($checklistID);
-    $actualPassword = GetPassword($checklistID);
+    $hash = GetHash($checklistID);
     $checklistUsername = GetUsername($checklistID);
 
     //define useful varibles
-    if ($actualPassword === null){
-        $passwordSet = false;
-        } else {
+    if ($hash){
         $passwordSet = true;
+    } else {
+        $passwordSet = false;
     }
+
     if ($checklistUsername === null){
         $userChecklist = false;
     } else {
@@ -34,9 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
 
-    if ($access === "Public editable" or $access === "Public not editable" or (($givenPassword === $actualPassword) and $passwordSet) or ($loggedin and $username === $checklistUsername)){
+    if ($access === "Public editable" or $access === "Public not editable" or ((password_verify($givenPassword, $hash)) and $passwordSet) or ($loggedin and $username === $checklistUsername)){
 
-        $tasks = Query("SELECT * FROM task WHERE checklistID = ?", "s", $checklistID);
+        $tasks = Query("SELECT * FROM tasks WHERE checklistID = ?", "s", $checklistID);
 
         $output["status"] = "success";
         $output["tasksAccess"] = true;

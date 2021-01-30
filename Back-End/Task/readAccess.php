@@ -8,17 +8,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $givenPassword = $_POST["password"];
 
     //get key varibles from checklist database
-    $actualPassword = GetPassword($checklistID);
+    $hash = GetHash($checklistID);
 
     //define useful varibles
-    if ($actualPassword === null){
-        $passwordSet = false;
-        } else {
+    if ($hash){
         $passwordSet = true;
+        } else {
+        $passwordSet = false;
     }
 
     //response
-    if (($givenPassword === $actualPassword) and $passwordSet){
+    if ((password_verify($givenPassword, $hash)) and $passwordSet){
        $output["status"] = "success";
     } else{
        $output["status"] = "fail";

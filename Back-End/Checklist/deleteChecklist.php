@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if ($loggedin and $username === $checklistUsername){
-        Query("DELETE FROM task WHERE checklistID = ?", "s", $checklistID);
+        Query("DELETE FROM tasks WHERE checklistID = ?", "s", $checklistID);
 
-        Query("DELETE FROM checklist WHERE checklistID = ?", "s", $checklistID);
+        Query("DELETE FROM checklists WHERE checklistID = ?", "s", $checklistID);
 
         unlink("../../checklists/" . $checklistID . ".php");
 

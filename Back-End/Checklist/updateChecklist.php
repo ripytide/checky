@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $checklistUsername = GetUsername($checklistID);
-    $actualPassword = GetPassword($checklistID);
+    $hash = GetHash($checklistID);
     $access = GetAccess($checklistID);
 
     session_start();
@@ -41,8 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $loggedin = false;
     }
 
-    if ($valid and ($access === "Public editable" or (($givenPassword === $actualPassword) and ($actualPassword !== null)) or ($loggedin and $username === $checklistUsername))){
-        Query("UPDATE checklist SET $column = ? WHERE checklistID = ?", "ss", $newValue, $checklistID);
+    if ($valid and ($access === "Public editable" or ((password_verify($givenPassword, $hash)) and ($hash)) or ($loggedin and $username === $checklistUsername))){
+        Query("UPDATE checklists SET $column = ? WHERE checklistID = ?", "ss", $newValue, $checklistID);
 
         $output["status"] = "success";
         $output["checklistID"] = $checklistID;

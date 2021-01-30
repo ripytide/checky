@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         fwrite($newFile, "<?php require(\"../checklist.php\"); ?>");
         fclose($newFile);
 
-        Query('INSERT INTO checklist VALUES (?, ?, NULL, NULL, "Private")', "ss", $idArray["ID"], $username);
+        Query('INSERT INTO checklists VALUES (?, ?, NULL, NULL, "Private")', "ss", $idArray["ID"], $username);
 
         $output["status"] = "success";
         $output["checklistID"] = $idArray["ID"];
@@ -47,7 +47,7 @@ function GetUniqueChecklistID($length){
         //get a rand string
         $string = GenerateString($length);
 
-        $result = Query("SELECT checklistID FROM checklist WHERE checklistID = ?", "s", $string);
+        $result = Query("SELECT checklistID FROM checklists WHERE checklistID = ?", "s", $string);
 
         //if unique end loop
         if ($result->num_rows === 0){

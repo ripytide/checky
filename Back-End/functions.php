@@ -13,16 +13,16 @@ function GenerateString($len){
     return($string);
 }
 
-function GetPassword($checklistID){
-    $result = Query("SELECT checklistPassword FROM checklist WHERE checklistID = ?", "s", $checklistID);
+function GetHash($checklistID){
+    $result = Query("SELECT checklistHash FROM checklists WHERE checklistID = ?", "s", $checklistID);
 
-    $password = $result->fetch_assoc()["checklistPassword"];
+    $hash = $result->fetch_assoc()["checklistHash"];
 
-    return($password);
+    return($hash);
 }
 
 function GetAccess($checklistID){
-    $result = Query("SELECT access FROM checklist WHERE checklistID = ?", "s", $checklistID);
+    $result = Query("SELECT access FROM checklists WHERE checklistID = ?", "s", $checklistID);
 
     $access = $result->fetch_assoc()["access"];
 
@@ -30,7 +30,7 @@ function GetAccess($checklistID){
 }
 
 function GetUsername($checklistID){
-    $result = Query("SELECT username FROM checklist WHERE checklistID = ?", "s", $checklistID);
+    $result = Query("SELECT username FROM checklists WHERE checklistID = ?", "s", $checklistID);
 
     $username = $result->fetch_assoc()["username"];
 
@@ -38,7 +38,7 @@ function GetUsername($checklistID){
 }
 
 function GetChecklistTitle($checklistID){
-    $result = Query("SELECT checklistTitle FROM checklist WHERE checklistID = ?", "s", $checklistID);
+    $result = Query("SELECT checklistTitle FROM checklists WHERE checklistID = ?", "s", $checklistID);
 
     $checklistTitle = $result->fetch_assoc()["checklistTitle"];
 
@@ -47,9 +47,9 @@ function GetChecklistTitle($checklistID){
 
 function Connect(){
     $db_servername = "localhost";
-    $db_username = "u108222632_ripytide";
-    $db_password = "1StapleearphoneS9";
-    $dbname = "u108222632_checky";
+    $db_username = "root";
+    $db_password = "changeme";
+    $dbname = "checky";
 
     // Create connection
     $conn = new mysqli($db_servername, $db_username, $db_password, $dbname);

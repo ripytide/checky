@@ -40,21 +40,16 @@ function IsValidCredentials($username, $password){
 	$userErrorMsg = "";
 	$passErrorMsg = "";
 
-    //get the Result
-    $result = Query("SELECT userPassword FROM users WHERE username = ?", "s", $username);
+    //get that users hash
+    $result = Query("SELECT userHash FROM users WHERE username = ?", "s", $username);
 
     //if username not found
     if ($result->num_rows === 0){
         $userErrorMsg .= "That username does not exist";
-    } else{
-
-		$row = $result->fetch_assoc();
-		if ($password !== $row["userPassword"]) {
-			$passErrorMsg = "That password does not match that username";
-		}
+    } else if (!password_verify($password, $result->fetch_assoc()["userHash"])){
+		$passErrorMsg = "That password does not match that username";
 	}
     
     return(array($userErrorMsg, $passErrorMsg));
 }
-
 ?>

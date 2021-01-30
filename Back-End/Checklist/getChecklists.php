@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($loggedin){
 
-        $result = Query("SELECT * FROM checklist WHERE username = ?", "s", $username);
+        $result = Query("SELECT * FROM checklists WHERE username = ?", "s", $username);
 
         if ($result->num_rows === 0){
             $output["status"] = "success";

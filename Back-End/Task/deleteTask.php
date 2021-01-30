@@ -18,12 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $access = GetAccess($checklistID);
-    $actualPassword = GetPassword($checklistID);
+    $hash = GetHash($checklistID);
     $checklistUsername = GetUsername($checklistID);
 
-    if ($access === "Public editable" or (($givenPassword === $actualPassword) and ($actualPassword !== null)) or ($loggedin and $username === $checklistUsername)){
+    if ($access === "Public editable" or ((password_verify($givenPassword, $hash)) and ($hash)) or ($loggedin and $username === $checklistUsername)){
 
-        Query("DELETE FROM task WHERE taskID = ?", "s", $taskID);
+        Query("DELETE FROM tasks WHERE taskID = ?", "s", $taskID);
 
         $output["status"] = "success";
         $output["taskID"] = $taskID;

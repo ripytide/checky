@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $passErrorMsg = IsValidPassword($password);
 
     if ($userErrorMsg === "" and $passErrorMsg === ""){
-        Query("INSERT INTO users VALUES (?, ?)", "ss", $username, $password);
+        Query("INSERT INTO users VALUES (?, ?)", "ss", $username, password_hash($password, PASSWORD_DEFAULT));
 
         //credentials are correct so start a session
 		session_start();

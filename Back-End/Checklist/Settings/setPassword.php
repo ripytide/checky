@@ -7,9 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST["password"];
     $checklistID = $_POST["checklistID"];
     
-    $actualPassword = GetPassword($checklistID);
+    $hash = GetHash($checklistID);
 
-    if ($actualPassword)
+    if ($hash)
     {
         $feedback = "You cannot set a password as you already have a password";
     } else{
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if ($feedback === ""){
-        Query("UPDATE checklist SET checklistPassword = ? WHERE checklistID = ?", "ss", $password, $_POST["checklistID"]);
+        Query("UPDATE checklists SET checklistHash = ? WHERE checklistID = ?", "ss", password_hash($password, PASSWORD_DEFAULT), $_POST["checklistID"]);
 
         $output["status"] = "success";
         $output["passErrorMsg"] = "";

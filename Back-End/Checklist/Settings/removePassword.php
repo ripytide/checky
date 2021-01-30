@@ -6,18 +6,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST["password"];
     $checklistID = $_POST["checklistID"];
 
-    $actualPassword = GetPassword($checklistID);
+    $hash = GetHash($checklistID);
 
-    if ((($password === $actualPassword) and ($actualPassword !== null))){
-        $validPass = true;
-    } else{
-        $validPass = false;
-    }
+    $validPass = password_verify($password, $hash) && !empty($password);
 
     if ($validPass){
-        Query("UPDATE checklist SET checklistPassword = NULL WHERE checklistID = ?", "s",  $_POST["checklistID"]);
+        Query("UPDATE checklists SET checklistHash = NULL WHERE checklistID = ?", "s",  $_POST["checklistID"]);
         
-        Query('UPDATE checklist SET access = "Public editable" WHERE checklistID = ?', "s", $_POST["checklistID"]);
+        Query('UPDATE checklists SET access = "Public editable" WHERE checklistID = ?', "s", $_POST["checklistID"]);
 
         $output["status"] = "success";
         $output["currentPassErrorMsg"] = "";
