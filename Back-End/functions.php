@@ -47,9 +47,9 @@ function GetChecklistTitle($checklistID){
 
 function Connect(){
     $db_servername = "localhost";
-    $db_username = "root";
-    $db_password = "changeme";
-    $dbname = "checky";
+    $db_username = "u108222632_ripytide";
+    $db_password = "1StapleearphoneS9";
+    $dbname = "u108222632_checky";
 
     // Create connection
     $conn = new mysqli($db_servername, $db_username, $db_password, $dbname);
