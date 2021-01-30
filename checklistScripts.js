@@ -6,13 +6,12 @@ function GrabChecklist() {
 	$.post(
 		"../../Back-End/Task/grabChecklist.php",
 		{ checklistID: GetChecklistID(), password: "" },
-		GrabChecklistReturned
+		GrabChecklistReturned,
+		"json"
 	);
 }
 
-function GrabChecklistReturned(data) {
-	let json = JSON.parse(data);
-
+function GrabChecklistReturned(json) {
 	HandleStatus(json);
 
 	if (json["tasksAccess"]) {
@@ -60,14 +59,13 @@ function ReGrabChecklist() {
 	$.post(
 		"../../Back-End/Task/grabChecklist.php",
 		{ checklistID: GetChecklistID(), password: $("#authPassword").val() },
-		ReGrabChecklistReturned
+		ReGrabChecklistReturned,
+		"json"
 	);
 }
 
-function ReGrabChecklistReturned(data) {
+function ReGrabChecklistReturned(json) {
 	//only called for non user checklists
-	let json = JSON.parse(data);
-
 	HandleStatus(json);
 
 	if (json["tasksAccess"]) {
@@ -103,13 +101,12 @@ function RequestReadAccess() {
 	$.post(
 		"../../Back-End/Task/readAccess.php",
 		{ checklistID: GetChecklistID(), password: GetPassword() },
-		ReadAccessReturned
+		ReadAccessReturned,
+		"json"
 	);
 }
 
-function ReadAccessReturned(data) {
-	let json = JSON.parse(data);
-
+function ReadAccessReturned(json) {
 	HandleStatus(json);
 
 	if (json["status"] === "success") {
@@ -171,7 +168,8 @@ function AddTaskCells(row) {
 	cell1.innerHTML = '<input type="checkbox"/>';
 	cell1.childNodes[0].addEventListener("change", ChangeCheckbox);
 
-	cell2.innerHTML = '<input type="text" placeholder="title here"/><p class="error-msg"></p>';
+	cell2.innerHTML =
+		'<input type="text" placeholder="title here"/><p class="error-msg"></p>';
 	cell2.childNodes[0].addEventListener("change", ChangeTitle);
 
 	cell3.innerHTML =
@@ -194,13 +192,12 @@ function NewTask() {
 	$.post(
 		"../../Back-End/Task/newTask.php",
 		{ checklistID: GetChecklistID(), password: GetPassword() },
-		NewTaskReturned
+		NewTaskReturned,
+		"json"
 	);
 }
 
-function NewTaskReturned(data) {
-	let json = JSON.parse(data);
-
+function NewTaskReturned(json) {
 	HandleStatus(json);
 
 	if (json["status"] === "success") {
@@ -227,12 +224,15 @@ function RequestDelete() {
 		password: GetPassword(),
 	};
 
-	$.post("../../Back-End/Task/deleteTask.php", dataOutwards, DeleteReturned);
+	$.post(
+		"../../Back-End/Task/deleteTask.php",
+		dataOutwards,
+		DeleteReturned,
+		"json"
+	);
 }
 
-function DeleteReturned(data) {
-	let json = JSON.parse(data);
-
+function DeleteReturned(json) {
 	HandleStatus(json);
 
 	if (json["status"] === "success") {
@@ -254,13 +254,12 @@ function ChangeChecklistTitle() {
 	$.post(
 		"../Back-End/Checklist/updateChecklist.php",
 		dataOutwards,
-		UpdateChecklistTitleReturned
+		UpdateChecklistTitleReturned,
+		"json"
 	);
 }
 
-function UpdateChecklistTitleReturned(data) {
-	json = JSON.parse(data);
-
+function UpdateChecklistTitleReturned(json) {
 	HandleStatus(json);
 
 	if (json["status"] !== "success") {
@@ -307,13 +306,12 @@ function RequestUpdateCell(node, column, newValue) {
 	$.post(
 		"../../Back-End/Task/updateTask.php",
 		dataOutwards,
-		UpdateChecklistReturned
+		UpdateChecklistReturned,
+		"json"
 	);
 }
 
-function UpdateChecklistReturned(data) {
-	let json = JSON.parse(data);
-
+function UpdateChecklistReturned(json) {
 	HandleStatus(json);
 
 	if (json["column"] === "taskTitle") {
@@ -342,7 +340,7 @@ function UpdateChecklistReturned(data) {
 			input.classList.remove("is-invalid");
 			errorMsg.innerText = "";
 		}
-	} else if (!json["userChecklist"] && json["status"] ==! "success") {
+	} else if (!json["userChecklist"] && json["status"] == !"success") {
 		CurrentPasswordError(json["errorMsg"]);
 	}
 }

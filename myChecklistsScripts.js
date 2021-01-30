@@ -3,12 +3,10 @@ $(document).ready(function () {
 });
 
 function GetChecklists() {
-	$.post("../Back-End/Checklist/getChecklists.php", {}, ShowChecklists);
+	$.post("../Back-End/Checklist/getChecklists.php", {}, ShowChecklists, "json");
 }
 
-function ShowChecklists(data) {
-	json = JSON.parse(data);
-
+function ShowChecklists(json) {
 	HandleStatus(json);
 
 	if (json["status"] == "success") {
@@ -29,12 +27,10 @@ function ShowChecklists(data) {
 }
 
 function NewChecklist() {
-	$.post("../Back-End/Checklist/newChecklist.php", {}, AddChecklistRow);
+	$.post("../Back-End/Checklist/newChecklist.php", {}, AddChecklistRow, "json");
 }
 
-function AddChecklistRow(data) {
-	json = JSON.parse(data);
-
+function AddChecklistRow(json) {
 	HandleStatus(json);
 
 	if (json["status"] == "success") {
@@ -63,8 +59,7 @@ function AddChecklistCells(row, checklistID) {
 	cell2.innerHTML = '<a class="btn link">Visit</a>';
 	cell2.childNodes[0].href = "checklists/".concat(checklistID);
 
-	cell3.innerHTML =
-		'<button type="button" class="btn">Delete</button>';
+	cell3.innerHTML = '<button type="button" class="btn">Delete</button>';
 	cell3.childNodes[0].addEventListener("click", RequestDelete);
 }
 
@@ -76,13 +71,12 @@ function RequestDelete() {
 	$.post(
 		"../Back-End/Checklist/deleteChecklist.php",
 		dataOutwards,
-		DeleteReturned
+		DeleteReturned,
+		"json"
 	);
 }
 
-function DeleteReturned(data) {
-	let json = JSON.parse(data);
-
+function DeleteReturned(json) {
 	HandleStatus(json);
 
 	let row = document.getElementById(json["checklistID"]);
@@ -103,13 +97,12 @@ function RequestUpdate(node, column, newValue) {
 	$.post(
 		"../Back-End/Checklist/updateChecklist.php",
 		dataOutwards,
-		UpdateReturned
+		UpdateReturned,
+		"json"
 	);
 }
 
-function UpdateReturned(data) {
-	let json = JSON.parse(data);
-
+function UpdateReturned(json) {
 	HandleStatus(json);
 
 	if (json["column"] == "checklistTitle") {

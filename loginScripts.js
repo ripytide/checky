@@ -7,13 +7,12 @@ function Login() {
 	$.post(
 		"../Back-End/User system/loginHandler.php",
 		credentials,
-		LoginReturned
+		LoginReturned,
+		"json"
 	);
 }
 
-function LoginReturned(data) {
-	let json = JSON.parse(data);
-
+function LoginReturned(json) {
 	HandleStatus(json);
 
 	if (json["status"] === "success") {

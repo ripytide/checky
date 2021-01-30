@@ -7,13 +7,12 @@ function Register() {
 	$.post(
 		"../Back-End/User system/registerHandler.php",
 		credentials,
-		RegisterReturned
+		RegisterReturned,
+		"json"
 	);
 }
 
-function RegisterReturned(data) {
-	let json = JSON.parse(data);
-
+function RegisterReturned(json) {
 	HandleStatus(json);
 
 	if (json["status"] === "success") {

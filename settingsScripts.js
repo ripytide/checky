@@ -12,13 +12,12 @@ function RequestAccessUpdate() {
 	$.post(
 		"../../Back-End/Checklist/Settings/updateAccess.php",
 		dataOutwards,
-		UpdateAccessReturned
+		UpdateAccessReturned,
+		"json"
 	);
 }
 
-function UpdateAccessReturned(data) {
-	json = JSON.parse(data);
-
+function UpdateAccessReturned(json) {
 	HandleStatus(json);
 
 	if (json["status"] === "success") {
@@ -37,13 +36,12 @@ function RequestSetPassword() {
 	$.post(
 		"../../Back-End/Checklist/Settings/setPassword.php",
 		dataOutwards,
-		SetPasswordReturned
+		SetPasswordReturned,
+		"json"
 	);
 }
 
-function SetPasswordReturned(data) {
-	let json = JSON.parse(data);
-
+function SetPasswordReturned(json) {
 	HandleStatus(json);
 
 	passErrorMsg = document.getElementById("setPassErrorMsg");
@@ -82,13 +80,12 @@ function RequestChangePassword() {
 	$.post(
 		"../../Back-End/Checklist/Settings/changePassword.php",
 		dataOutwards,
-		ChangePasswordReturned
+		ChangePasswordReturned,
+		"json"
 	);
 }
 
-function ChangePasswordReturned(data) {
-	let json = JSON.parse(data);
-
+function ChangePasswordReturned(json) {
 	HandleStatus(json);
 
 	if (json["status"] !== "success") {
@@ -105,13 +102,12 @@ function RequestRemovePassword() {
 	$.post(
 		"../../Back-End/Checklist/Settings/removePassword.php",
 		dataOutwards,
-		RemovePasswordReturned
+		RemovePasswordReturned,
+		"json"
 	);
 }
 
-function RemovePasswordReturned(data) {
-	let json = JSON.parse(data);
-
+function RemovePasswordReturned(json) {
 	HandleStatus(json);
 
 	if (json["status"] == "success") {
