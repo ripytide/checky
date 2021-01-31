@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!-- Stops search engines indexing this page -->
+		<meta name="robots" content="noindex">
 
 		<!-- Required meta tags -->
 		<meta charset="utf-8" />
