@@ -1,3 +1,8 @@
+<?php
+session_start();
+$loggedIn = isset($_SESSION["loggedin"]) && ($_SESSION["loggedin"] === true);
+?>
+
 <header>
 	<div class="home">
 		<a href="/index">
@@ -6,7 +11,7 @@
 		<a href="/index">Checky</a>
 	</div>
 
-	<ul class="norm-nav">
+	<ul class="norm-nav<?php echo($loggedIn ? " norm-nav-logged-in" : "");?>">
 		<?php require("getNavList.php"); ?>
 	</ul>
 
