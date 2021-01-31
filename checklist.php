@@ -67,13 +67,13 @@
 						<tr>
 							<th scope="col" onclick='SortChecklist("checkbox")'></th>
 							<th scope="col" onclick='SortChecklist("title")'>Title</th>
-							<th scope="col" onclick='SortChecklist("description")'>
+							<th scope="col" class="non-important-cell" onclick='SortChecklist("description")'>
 								Description
 							</th>
-							<th scope="col" onclick='SortChecklist("priority")'>
+							<th scope="col" class="non-important-cell" onclick='SortChecklist("priority")'>
 								Priority
 							</th>
-							<th scope="col" onclick='SortChecklist("status")'>Status</th>
+							<th scope="col" class="non-important-cell" onclick='SortChecklist("status")'>Status</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
@@ -101,7 +101,9 @@
 									type="password"
 								/>
 								<p id="setPassErrorMsg" class="error-msg"></p>
-								<button class="btn" onclick="RequestSetPassword()">Set</button>
+								<div class="text-center">
+									<button class="btn" onclick="RequestSetPassword()">Set</button>
+								</div>
 							</td>
 						</tr>
 						<tr id="accessRow" class="hide">
@@ -141,13 +143,17 @@
 									type="password"
 								/>
 								<p id="newPassErrorMsg" class="error-msg"></p>
-								<button class="btn"onclick="RequestChangePassword()">Change</button>
+								<div class="text-center">
+									<button class="btn"onclick="RequestChangePassword()">Change</button>
+								</div>
 							</td>
 						</tr>
 						<tr id="removePasswordRow" class="hide">
 							<td>Remove Password</td>
 							<td>
-								<button class="btn" type="button" onclick="RequestRemovePassword()">Remove</button>
+								<div class="text-center">
+									<button class="btn" type="button" onclick="RequestRemovePassword()">Remove</button>
+								</div>
 							</td>
 						</tr>
 					</tbody>

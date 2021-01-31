@@ -17,6 +17,10 @@ button {
 	cursor: pointer;
 }
 
+.text-center {
+	text-align: center;
+}
+
 button:active {
 	outline: unset;
 }
@@ -296,20 +300,21 @@ footer {
 	min-height: 60vh;
 
 	display: flex;
-	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: wrap;
+
 	text-align: center;
 }
 
 .checklist-container {
-	width: 70%;
-	padding: 0px 30px;
+	max-width: 1200px;
+	margin: 0px 30px;
 }
 
 .management-container {
-	width: 30%;
-	padding: 0px 30px;
+	width: 500px;
+	margin: 0px 30px;
 }
 
 .management-table {
@@ -382,6 +387,12 @@ footer {
 	padding: 5px 10px;
 }
 
+@media only screen and (max-width: 1032px) {
+	.non-important-cell {
+		display: none;
+	}
+}
+
 .table td input,
 .table td textarea,
 .table td select {
@@ -410,6 +421,10 @@ footer {
 	overflow: hidden;
 	height: 40px;
 	width: 40px;
+}
+
+.table td input[type="text"] {
+	width: 220px
 }
 
 .table p {

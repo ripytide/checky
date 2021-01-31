@@ -161,9 +161,13 @@ function AddTaskCells(row) {
 	let cell1 = row.insertCell(0);
 	let cell2 = row.insertCell(1);
 	let cell3 = row.insertCell(2);
+	cell3.classList.add("non-important-cell")
 	let cell4 = row.insertCell(3);
+	cell4.classList.add("non-important-cell");
 	let cell5 = row.insertCell(4);
+	cell5.classList.add("non-important-cell");
 	let cell6 = row.insertCell(5);
+
 
 	cell1.innerHTML = '<input type="checkbox"/>';
 	cell1.childNodes[0].addEventListener("change", ChangeCheckbox);
