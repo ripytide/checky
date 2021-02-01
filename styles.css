@@ -338,6 +338,8 @@ footer {
 }
 
 .title {
+	width: min(100%, 800px);
+
 	background: none;
 	font-size: 1.5em;
 	border: none;
@@ -379,18 +381,13 @@ footer {
 .table th {
 	text-align: center;
 	font-size: 1.5em;
+	padding: 5px 10px;
 }
 
 .table td {
 	text-align: left;
 	font-size: 1.25em;
 	padding: 5px 10px;
-}
-
-@media only screen and (max-width: 1032px) {
-	.non-important-cell {
-		display: none;
-	}
 }
 
 .table td input,
@@ -425,6 +422,40 @@ footer {
 
 .table td input[type="text"] {
 	width: 220px
+}
+
+@media only screen and (max-width: 1032px) {
+	.non-important-cell {
+		display: none;
+	}
+
+	.checklist-container {
+		width: 500px;
+	}
+
+
+	.table td input[type="text"], table td input[type="password"] {
+		width: 100px;
+	}
+
+	.table td {
+		font-size: 1em;
+		padding: 10px 0;
+	}
+	.table th {
+		font-size: 1.2em;
+		padding: 10px 0;
+	}
+}
+
+@media only screen and (max-width: 322px) {
+	.management-table th {
+		font-size: 0.95em;
+	}
+
+	.home {
+		margin-right: 30px;
+	}
 }
 
 .table p {
