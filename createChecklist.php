@@ -10,7 +10,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     $loggedin = false;
 }
 
-$idArray = GetUniqueChecklistID(4);
+$idArray = GetUniqueChecklistID(1);
 
 if ($idArray["status"] === "unique" and $loggedin){
 
