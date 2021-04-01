@@ -67,31 +67,40 @@ header("Location: checklists/" . $idArray["ID"]);
 //a function to find a unique length string of length $length
 function GetUniqueChecklistID($length){
 
+    //set the looping variables
     $loop = true;
     $increment = 0;
-
+    
+    //a standard while loop
     while ($loop){
-
+        
+        //this increments the $increment variable by one
         $increment++;
 
         //get a rand string
         $string = GenerateString($length);
 
+        //select checklistID from the checklist table to check if the new code is unique
         $result = Query("SELECT checklistID FROM checklists WHERE checklistID = ?", "s", $string);
 
         //if unique end loop
         if ($result->num_rows === 0){
+            //set the $loop variable to false
             $loop = false;
+            //send status as unique
             $output["status"] = "unique";
+            //send back the ID itself
             $output["ID"] = $string;
 
             //to prevent infinite loop
         } else if($increment > 100){
+            //if not unique and failed to find unique code 100 times then the function returns to prevent infinite loops
             $loop = false;
+            //send back the status as not unique
             $output["status"] = "not unique";
         }
     }
-
+    //returns the results of the function
     return($output);
 }
 ?>
